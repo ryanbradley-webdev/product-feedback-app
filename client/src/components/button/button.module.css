@@ -27,3 +27,7 @@
 .purple:is(:hover, :focus) {
     background-color: var(--clr-purple-600);
 }
+
+.dark-blue {
+    background-color: var(--clr-blue-300);
+}

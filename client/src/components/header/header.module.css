@@ -70,6 +70,7 @@
     min-height: calc(100vh - 72px);
     background-color: var(--clr-white-300);
     transition: right 0.2s ease-in-out;
+    z-index: 12;
 }
 
 .nav[aria-hidden='false'] {
