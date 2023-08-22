@@ -1,0 +1,28 @@
+.list {
+    margin-block: 32px;
+    margin-inline: 24px;
+    background-color: var(--clr-white-900);
+}
+
+.no_feedback {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    padding-block: 76px;
+    padding-inline: 25px;
+}
+
+.no_feedback svg {
+    margin-bottom: 39px;
+}
+
+.no_feedback h3 {
+    color: var(--clr-blue-600);
+}
+
+.no_feedback p {
+    color: var(--clr-grey-300);
+    font-size: 13px;
+    margin-top: 14px;
+    margin-bottom: 24px;
+}

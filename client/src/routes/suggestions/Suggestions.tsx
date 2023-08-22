@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from '../../components/header/Header'
 import styles from './suggestions.module.css'
 import FeedbackSort from '../../components/feedbackSort/FeedbackSort'
+import FeedbackList from '../../components/feedbackList/FeedbackList'
 
 export default function Suggestions() {
     const [filters, setFilters] = useState<string[]>([])
@@ -23,6 +24,8 @@ export default function Suggestions() {
                     sortTerm={sortTerm}
                     setSortTerm={setSortTerm}
                 />
+
+                <FeedbackList />
 
             </main>
 

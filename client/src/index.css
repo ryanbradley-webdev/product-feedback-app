@@ -49,4 +49,5 @@
 
 html {
     font: var(--font-body-lg);
+    background-color: var(--clr-white-300);
 }
