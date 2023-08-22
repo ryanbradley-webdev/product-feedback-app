@@ -1,7 +1,7 @@
 import styles from './button.module.css'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-    color: 'purple' | 'blue' | 'dark-blue' | 'grey-blue' | 'red' | undefined
+    color?: 'purple' | 'blue' | 'dark-blue' | 'grey-blue' | 'red'
     back?: boolean
 }
 
@@ -13,6 +13,7 @@ export default function Button({
     return (
         <button
             className={styles[color || 'bare']}
+            {...props}
         >
 
             {back && '<'}

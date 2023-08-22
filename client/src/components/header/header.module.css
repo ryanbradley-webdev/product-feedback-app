@@ -60,3 +60,27 @@
     --x: -50%;
     opacity: 1;
 }
+
+.nav {
+    position: absolute;
+    top: 72px;
+    right: -271px;
+    padding: 24px;
+    width: 271px;
+    min-height: calc(100vh - 72px);
+    background-color: var(--clr-white-300);
+    transition: right 0.2s ease-in-out;
+}
+
+.nav[aria-hidden='false'] {
+    right: 0;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 24px;
+    background-color: var(--clr-white-900);
+    border-radius: var(--radius-btn);
+}
