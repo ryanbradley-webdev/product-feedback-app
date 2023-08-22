@@ -1,0 +1,62 @@
+.header {
+    display: grid;
+    align-items: center;
+    height: 72px;
+    width: 100%;
+    padding-inline: 24px;
+    color: var(--clr-white-900);
+    background-image: url(/background-header-mobile.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title p {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.75;
+}
+
+.burger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    overflow: hidden;
+    background-color: transparent;
+    border: none;
+}
+
+.burger > svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(var(--x), -50%);
+    transition: all 0.12s ease-in-out;
+}
+
+.burger > svg:first-of-type {
+    --x: -50%;
+}
+
+.burger > svg:last-of-type {
+    --x: 50%;
+    opacity: 0;
+}
+
+.burger[data-open='true'] > svg:first-of-type {
+    --x: -150%;
+    opacity: 0;
+}
+
+.burger[data-open='true'] > svg:last-of-type {
+    --x: -50%;
+    opacity: 1;
+}
