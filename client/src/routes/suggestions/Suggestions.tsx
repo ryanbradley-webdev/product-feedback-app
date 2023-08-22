@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import Header from '../../components/header/Header'
 import styles from './suggestions.module.css'
+import FeedbackList from '../../components/feedbackList/FeedbackList'
 
 export default function Suggestions() {
     const [filters, setFilters] = useState<string[]>([])
+    const [sortTerm, setSortTerm] = useState<SortOptions>('most-upvotes')
 
     return (
         <>
@@ -17,7 +19,10 @@ export default function Suggestions() {
                 className={styles.main}
             >
 
-                Main
+                <FeedbackList
+                    sortTerm={sortTerm}
+                    setSortTerm={setSortTerm}
+                />
 
             </main>
 

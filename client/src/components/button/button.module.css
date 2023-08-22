@@ -4,5 +4,26 @@
 .grey-blue,
 .red,
 .bare {
+    padding-inline: 16px;
+    height: 40px;
+    font-size: 13px;
+    font-weight: bold;
     border: none;
+    border-radius: var(--radius-btn);
+}
+
+.purple,
+.blue,
+.dark-blue,
+.grey-blue,
+.red {
+    color: var(--clr-white-600);
+}
+
+.purple {
+    background-color: var(--clr-purple-900);
+}
+
+.purple:is(:hover, :focus) {
+    background-color: var(--clr-purple-600);
 }

@@ -1,0 +1,14 @@
+.sort {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 24px;
+    padding-block: 8px;
+    background-color: var(--clr-blue-300);
+}
+
+.sort_option_container {
+    position: absolute;
+    top: 40px;
+}
