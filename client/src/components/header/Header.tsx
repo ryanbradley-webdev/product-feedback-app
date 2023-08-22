@@ -3,6 +3,7 @@ import Burger from '../../assets/Burger'
 import CloseBtn from '../../assets/CloseBtn'
 import styles from './header.module.css'
 import Chip from '../chip/Chip'
+import { Link } from 'react-router-dom'
 
 export default function Header({
     filters,
@@ -100,7 +101,77 @@ export default function Header({
 
                 </div>
 
-                <div></div>
+                <div
+                    className={styles.roadmap}
+                >
+
+                    <div
+                        className={styles.link}
+                    >
+
+                        <h3>
+                            Roadmap
+                        </h3>
+
+                        <Link
+                            to='/roadmap'
+                        >
+                        
+                            View
+                        
+                        </Link>
+
+                    </div>
+
+                    <div
+                        className={styles.stat_container}
+                    >
+
+                        <div
+                            className={styles.stat}
+                        >
+
+                            <span>
+                                Planned
+                            </span>
+
+                            <p>
+                                2
+                            </p>
+
+                        </div>
+
+                        <div
+                            className={styles.stat}
+                        >
+
+                            <span>
+                                In-Progress
+                            </span>
+
+                            <p>
+                                3
+                            </p>
+
+                        </div>
+
+                        <div
+                            className={styles.stat}
+                        >
+
+                            <span>
+                                Live
+                            </span>
+
+                            <p>
+                                1
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </nav>
 
