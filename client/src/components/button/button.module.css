@@ -12,6 +12,14 @@
     border-radius: var(--radius-btn);
 }
 
+.bare {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--clr-grey-300);
+    background-color: transparent;
+}
+
 .purple,
 .blue,
 .dark-blue,
@@ -30,4 +38,12 @@
 
 .dark-blue {
     background-color: var(--clr-blue-300);
+}
+
+.blue {
+    background-color: var(--clr-blue-800);
+}
+
+.blue:is(:hover, :focus) {
+    background-color: var(--clr-blue-700);
 }

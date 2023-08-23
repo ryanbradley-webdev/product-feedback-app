@@ -31,4 +31,5 @@ h5 {
 
 button {
     font-family: inherit;
+    cursor: pointer;
 }

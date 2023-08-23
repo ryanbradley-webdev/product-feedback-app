@@ -1,3 +1,4 @@
+import BackCaret from '../../assets/BackCaret'
 import styles from './button.module.css'
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -16,7 +17,7 @@ export default function Button({
             {...props}
         >
 
-            {back && '<'}
+            {back && <BackCaret />}
 
             {props.children}
 
