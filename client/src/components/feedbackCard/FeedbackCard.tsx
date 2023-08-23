@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import styles from './feedbackCard.module.css'
 import Chip from '../chip/Chip'
+import Upvote from '../upvote/Upvote'
 
 export default function FeedbackCard({
     id,
@@ -38,9 +39,9 @@ export default function FeedbackCard({
                 className={styles.interactions}
             >
 
-                <div>
-                    {upvotes}
-                </div>
+                <Upvote
+                    upvotes={upvotes}
+                />
 
                 <div>
                     {comments.length}

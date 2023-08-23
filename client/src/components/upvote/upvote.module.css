@@ -1,0 +1,14 @@
+.upvote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 32px;
+    padding-inline: 14px;
+    font: var(--font-h5);
+    letter-spacing: var(--space-h5);
+    color: var(--clr-blue-600);
+    background-color: var(--clr-white-600);
+    border: none;
+    border-radius: var(--radius-btn);
+}
