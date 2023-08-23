@@ -11,17 +11,32 @@ export default function FeedbackCard({
     description,
     category,
     upvotes,
-    comments
-}: Feedback) {
+    status,
+    comments,
+    statused
+}: Feedback & {
+    statused?: boolean
+}) {
     return (
         <Link
             to={'/' + id}
             className={styles.card}
+            data-status={status}
         >
 
             <div
                 className={styles.content}
             >
+
+                {
+                    statused && (
+                        <p
+                            className={styles.status}
+                        >
+                            {status}
+                        </p>
+                    )
+                }
             
                 <h5>
                     {title}

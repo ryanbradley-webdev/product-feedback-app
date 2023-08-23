@@ -3,7 +3,7 @@ import styles from './chip.module.css'
 
 interface ChipProps extends React.HTMLAttributes<HTMLLabelElement> {
     selected?: boolean
-    filterTerm?: 'UI' | 'UX' | 'Enhancement' | 'Bug' | 'Feature'
+    filterTerm?: string
     setFilters?: Dispatch<SetStateAction<string[]>>
 }
 

@@ -24,7 +24,7 @@ export default function FeedbackForm() {
     const [title, setTitle] = useState(selectedFeedback?.title || '')
     const [description, setDescription] = useState(selectedFeedback?.description || '')
     const [category, setCategory] = useState(selectedFeedback?.category || 'UI')
-    const [status, setStatus] = useState('Planned')
+    const [status, setStatus] = useState(selectedFeedback?.status || 'Planned')
 
     const navigate = useNavigate()
 

@@ -1,4 +1,5 @@
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -7,6 +8,44 @@
     text-decoration: none;
     color: inherit;
     background-color: var(--clr-white-900);
+    overflow: hidden;
+}
+
+.card:has(.status)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+}
+
+.card[data-status='Planned']::before,
+.card[data-status='Planned'] .status::before {
+    background-color: var(--clr-orange-900);
+}
+
+.card[data-status='In-Progress']::before,
+.card[data-status='In-Progress'] .status::before {
+    background-color: var(--clr-purple-900);
+}
+
+.card[data-status='Live']::before,
+.card[data-status='Live'] .status::before {
+    background-color: var(--clr-blue-900);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.status::before {
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-radius: 100%;
 }
 
 .content h5 {

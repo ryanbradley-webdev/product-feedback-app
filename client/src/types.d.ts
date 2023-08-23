@@ -27,5 +27,6 @@ type Feedback = {
     description: string
     upvotes: number
     category: string
+    status: string
     comments: FeedbackComment[]
 }
