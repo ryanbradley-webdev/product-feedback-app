@@ -4,9 +4,12 @@ import NoFeedback from '../../assets/NoFeedback'
 import Button from '../button/Button'
 import { Link } from 'react-router-dom'
 
+import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
+import FeedbackCard from '../feedbackCard/FeedbackCard'
+
 export default function FeedbackList() {
     const { data: items } = useQuery({
-        queryFn: () => [],
+        queryFn: () => SAMPLE_FEEDBACK,
         queryKey: ['feedback']
     })
 
@@ -17,10 +20,11 @@ export default function FeedbackList() {
             
             {
                 items?.length ? (
-                    items.map(() => (
-                        <p key={crypto.randomUUID()}>
-                            hello
-                        </p>
+                    items.map(item => (
+                        <FeedbackCard
+                            key={item.id}
+                            {...item}
+                        />
                     ))
                 ) : (
                     <div

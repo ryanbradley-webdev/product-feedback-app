@@ -2,9 +2,9 @@ import { Dispatch, SetStateAction } from 'react'
 import styles from './chip.module.css'
 
 interface ChipProps extends React.HTMLAttributes<HTMLLabelElement> {
-    selected: boolean
+    selected?: boolean
     filterTerm?: 'UI' | 'UX' | 'Enhancement' | 'Bug' | 'Feature'
-    setFilters: Dispatch<SetStateAction<string[]>>
+    setFilters?: Dispatch<SetStateAction<string[]>>
 }
 
 export default function Chip({
@@ -14,6 +14,8 @@ export default function Chip({
     ...props
 }: ChipProps) {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!setFilters) return
+
         if (e.target.checked) {
             if (filterTerm) {
                 setFilters(prevFilters => ([
@@ -47,8 +49,9 @@ export default function Chip({
             <input
                 type="checkbox"
                 value={filterTerm?.toLowerCase() || 'all'}
-                onChange={handleChange}
+                onChange={setFilters ? handleChange : undefined}
                 checked={selected}
+                disabled={!setFilters}
             />
 
         </label>

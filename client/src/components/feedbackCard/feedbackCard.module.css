@@ -1,0 +1,30 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    color: inherit;
+}
+
+.content h5 {
+    color: var(--clr-blue-600);
+}
+
+.content p {
+    font-size: 13px;
+    color: var(--clr-grey-300);
+    margin-block: 8px;
+}
+
+.content label {
+    width: fit-content;
+}
+
+.interactions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

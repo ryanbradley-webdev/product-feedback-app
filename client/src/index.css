@@ -30,6 +30,7 @@
     --font-h2: bold 15px var(--font-fam);
     --font-h3: bold 18px/26px var(--font-fam);
     --font-h4: bold 14px/20px var(--font-fam);
+    --font-h5: bold 13px var(--font-fam);
     --font-body-lg: 16px/23px var(--font-fam);
     --font-body-md: 15px/22px var(--font-fam);
     --font-body-sm: 600 13px/19px var(--font-fam);
@@ -37,6 +38,7 @@
     --space-h2: -0.19px;
     --space-h3: -0.25px;
     --space-h4: -0.2px;
+    --space-h5: -0.18px;
     --radius-btn: 10px;
 }
 

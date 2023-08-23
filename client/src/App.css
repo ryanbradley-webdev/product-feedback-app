@@ -24,6 +24,11 @@ h4 {
     letter-spacing: var(--space-h4);
 }
 
+h5 {
+    font: var(--font-h5);
+    letter-spacing: var(--space-h5);
+}
+
 button {
     font-family: inherit;
 }
