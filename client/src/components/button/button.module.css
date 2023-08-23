@@ -40,10 +40,26 @@
     background-color: var(--clr-blue-300);
 }
 
+.grey-blue {
+    background-color: var(--clr-blue-600);
+}
+
+.grey-blue:is(:hover, :focus) {
+    background-color: var(--clr-grey-600);
+}
+
 .blue {
     background-color: var(--clr-blue-800);
 }
 
 .blue:is(:hover, :focus) {
     background-color: var(--clr-blue-700);
+}
+
+.red {
+    background-color: var(--clr-red-900);
+}
+
+.red:is(:hover, :focus) {
+    background-color: var(--clr-red-600);
 }

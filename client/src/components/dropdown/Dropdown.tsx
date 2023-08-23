@@ -21,6 +21,7 @@ export default function Dropdown({
                 width: fullWidth ? '100%' : '',
                 left: fullWidth ? '0' : '40px'
             }}
+            aria-hidden={!visible}
         >
 
             {
@@ -31,7 +32,7 @@ export default function Dropdown({
                         data-selected={selectedOption === option}
                         onClick={() => selectOption(option)}
                     >
-                        Most Upvotes
+                        {option}
                     </button>
                 ))
             }

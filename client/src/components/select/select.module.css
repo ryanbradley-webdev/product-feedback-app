@@ -1,5 +1,24 @@
 .select {
     position: relative;
+    height: 48px;
     width: 100%;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--clr-blue-600);
+    background-color: var(--clr-white-600);
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+.select::after {
+    content: url(./icon-down-arrow.svg);
+    position: absolute;
+    right: 16px;
+    top: 12.5px;
+}
+
+.select:has(div[aria-hidden='false'])::after {
+    rotate: 180deg;
 }

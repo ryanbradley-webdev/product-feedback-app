@@ -3,6 +3,8 @@
     width: 100%;
     padding: 16px;
     font-family: inherit;
+    font-size: 13px;
+    color: var(--clr-blue-600);
     background-color: var(--clr-white-600);
     border: none;
     border-radius: 5px;

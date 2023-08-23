@@ -24,7 +24,7 @@ export default function FeedbackForm() {
     const [title, setTitle] = useState(selectedFeedback?.title || '')
     const [description, setDescription] = useState(selectedFeedback?.description || '')
     const [category, setCategory] = useState(selectedFeedback?.category || 'UI')
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState('Planned')
 
     const navigate = useNavigate()
 
@@ -52,6 +52,7 @@ export default function FeedbackForm() {
 
             <form
                 onSubmit={handleSubmit}
+                className={styles.form}
             >
 
                 <img
@@ -62,7 +63,9 @@ export default function FeedbackForm() {
                     {editId ? 'Editing \'' + title + '\'' : 'Create New Feedback'}
                 </h3>
 
-                <div>
+                <div
+                    className={styles.field}
+                >
 
                     <h5>
                         Feedback Title
@@ -82,7 +85,9 @@ export default function FeedbackForm() {
 
                 </div>
 
-                <div>
+                <div
+                    className={styles.field}
+                >
 
                     <h5>
                         Category
@@ -108,7 +113,9 @@ export default function FeedbackForm() {
 
                 {
                     editId && (
-                        <div>
+                        <div
+                            className={styles.field}
+                        >
 
                             <h5>
                                 Update Status
@@ -132,7 +139,9 @@ export default function FeedbackForm() {
                     )
                 }
 
-                <div>
+                <div
+                    className={styles.field}
+                >
 
                     <h5>
                         Feedback Detail
@@ -146,6 +155,36 @@ export default function FeedbackForm() {
                         userComment={description}
                         setUserComment={setDescription}
                     />
+
+                </div>
+
+                <div
+                    className={styles.btn_div}
+                >
+
+                    <Button
+                        color='purple'
+                    >
+                        {editId ? 'Save Changes' : 'Add Feedback'}
+                    </Button>
+
+                    <Button
+                        color='grey-blue'
+                        type='button'
+                    >
+                        Cancel
+                    </Button>
+
+                    {
+                        editId && (
+                            <Button
+                                color='red'
+                                type='button'
+                            >
+                                Delete
+                            </Button>
+                        )
+                    }
 
                 </div>
 
