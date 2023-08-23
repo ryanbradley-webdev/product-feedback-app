@@ -11,6 +11,22 @@
     background-repeat: no-repeat;
 }
 
+.header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    top: 72px;
+    background-color: #00000080;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.header:has(.nav[aria-hidden='false'])::after {
+    opacity: 1;
+}
+
 .title {
     display: flex;
     align-items: center;
