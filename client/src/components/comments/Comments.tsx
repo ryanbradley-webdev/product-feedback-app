@@ -3,26 +3,41 @@ import styles from './comments.module.css'
 import Button from '../button/Button'
 import CommentPost from './CommentPost'
 import { getCommentLength } from '../../util/getCommentLength'
+import TextArea from './TextArea'
 
 export default function Comments({
+    id,
     comments
 }: {
+    id: string
     comments: FeedbackComment[]
 }) {
     const [userComment, setUserComment] = useState('')
 
     const commentCount = getCommentLength(comments)
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.target.value.length > 250) {
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!userComment) {
             return
         }
 
-        setUserComment(e.target.value)
-    }
+        const newComment: FeedbackComment = {
+            id: crypto.randomUUID(),
+            user: {
+                id: '5432',
+                name: 'Elijah Moss',
+                handle: '@hexagon.bestagon',
+                profileImg: ''
+            },
+            comment: userComment,
+            replies: []
+        }
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
+        console.log(newComment) // FIXME add API call
+
+        setUserComment('')
     }
 
     return (
@@ -40,6 +55,7 @@ export default function Comments({
                     comments.map(comment => (
                         <CommentPost
                             key={comment.id}
+                            feedbackId={id}
                             {...comment}
                         />
                     ))
@@ -56,14 +72,9 @@ export default function Comments({
                     Add Comment
                 </h3>
 
-                <textarea
-                    name="comment"
-                    id="comment"
-                    rows={3}
-                    cols={30}
-                    onChange={handleChange}
-                    value={userComment}
-                    placeholder='Type your comment here'
+                <TextArea
+                    userComment={userComment}
+                    setUserComment={setUserComment}
                 />
 
                 <div>

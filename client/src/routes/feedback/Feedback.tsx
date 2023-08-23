@@ -56,6 +56,7 @@ export default function Feedback() {
                         />
 
                         <Comments
+                            id={feedback.id}
                             comments={feedback.comments}
                         />
 

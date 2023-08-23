@@ -1,27 +1,22 @@
-import { useState } from 'react'
 import styles from './comments.module.css'
 import CommentContent from './CommentContent'
 
 export default function CommentPost({
+    feedbackId,
     user,
     replies,
     comment
-}: FeedbackComment) {
-
-    const [replyOpen, setReplyOpen] = useState(false)
-
-    const openReply = () => {
-        setReplyOpen(!replyOpen)
-    }
-
+}: FeedbackComment & {
+    feedbackId: string
+}) {
     return (
         <div
             className={styles.comment}
         >
 
             <CommentContent
+                feedbackId={feedbackId}
                 comment={comment}
-                openReply={openReply}
                 {...user}
             />
 
@@ -33,8 +28,8 @@ export default function CommentPost({
 
                         {replies.map(reply => (
                             <CommentContent
+                                feedbackId={feedbackId}
                                 key={reply.id}
-                                openReply={openReply}
                                 {...reply.user}
                                 {...reply}
                             />
