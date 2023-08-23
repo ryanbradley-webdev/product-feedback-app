@@ -6,7 +6,8 @@
     border-radius: var(--radius-btn);
 }
 
-:where(.comments, .add_comment) h3 {
+:where(.comments, .add_comment) h3,
+.user_info h5 {
     color: var(--clr-blue-600);
 }
 
@@ -41,4 +42,47 @@
 
 .add_comment textarea:is(:hover, :focus) {
     outline: none;
+}
+
+.comment {
+    display: grid;
+    row-gap: 16px;
+    padding-block: 24px;
+}
+
+.comment:last-child {
+    padding-bottom: 0;
+}
+
+.user_info {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.comment p,
+.user_info p {
+    font-size: 13px;
+    color: var(--clr-grey-300);
+}
+
+.user_info button {
+    margin-left: auto;
+    color: var(--clr-blue-800);
+    font-size: 13px;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
+}
+
+.img_placeholder,
+.img {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.img_placeholder {
+    background-color: var(--clr-grey-900);
 }

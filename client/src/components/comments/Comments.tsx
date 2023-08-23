@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import styles from './comments.module.css'
 import Button from '../button/Button'
+import CommentPost from './CommentPost'
 
 export default function Comments({
     comments
@@ -31,6 +32,15 @@ export default function Comments({
                 <h3>
                     {comments.length} Comment{comments.length !== 1 && 's'}
                 </h3>
+
+                {
+                    comments.map(comment => (
+                        <CommentPost
+                            key={comment.id}
+                            {...comment}
+                        />
+                    ))
+                }
 
             </section>
 
