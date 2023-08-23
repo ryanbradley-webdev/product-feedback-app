@@ -4,13 +4,14 @@ import styles from './feedbackSort.module.css'
 import Button from '../button/Button'
 import { Link } from 'react-router-dom'
 import DownCaret from '../../assets/DownCaret'
+import Dropdown from '../dropdown/Dropdown'
 
 export default function FeedbackList({
     sortTerm,
     setSortTerm
 }: {
-    sortTerm: SortOptions
-    setSortTerm: Dispatch<SetStateAction<SortOptions>>
+    sortTerm: string
+    setSortTerm: Dispatch<SetStateAction<string>>
 }) {
     const [optionsVisible, setOptionsVisible] = useState(false)
 
@@ -18,7 +19,7 @@ export default function FeedbackList({
         setOptionsVisible(!optionsVisible)
     }
 
-    const selectOption = (option: SortOptions) => {
+    const selectOption = (option: string) => {
         setSortTerm(option)
         toggleOptions()
     }
@@ -42,44 +43,17 @@ export default function FeedbackList({
             
             </Button>
 
-            <div
-                className={styles.sort_option_container}
-                aria-hidden={!optionsVisible}
-            >
-
-                <button
-                    className={styles.sort_option}
-                    data-selected={sortTerm === 'most-upvotes'}
-                    onClick={() => selectOption('most-upvotes')}
-                >
-                    Most Upvotes
-                </button>
-
-                <button
-                    className={styles.sort_option}
-                    data-selected={sortTerm === 'least-upvotes'}
-                    onClick={() => selectOption('least-upvotes')}
-                >
-                    Least Upvotes
-                </button>
-
-                <button
-                    className={styles.sort_option}
-                    data-selected={sortTerm === 'most-comments'}
-                    onClick={() => selectOption('most-comments')}
-                >
-                    Most Comments
-                </button>
-
-                <button
-                    className={styles.sort_option}
-                    data-selected={sortTerm === 'least-comments'}
-                    onClick={() => selectOption('least-comments')}
-                >
-                    Least Comments
-                </button>
-
-            </div>
+            <Dropdown
+                selectedOption={sortTerm}
+                options={[
+                    'Most Upvotes',
+                    'Least Upvotes',
+                    'Most Comments',
+                    'Least Comments'
+                ]}
+                selectOption={selectOption}
+                visible={optionsVisible}
+            />
 
             <Link
                 to='/new'

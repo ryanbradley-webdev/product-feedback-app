@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import styles from './comments.module.css'
-import TextArea from './TextArea'
+import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
 
 export default function CommentContent({
@@ -116,6 +116,7 @@ export default function CommentContent({
                         <TextArea
                             userComment={userComment}
                             setUserComment={setUserComment}
+                            placeholder
                         />
 
                         <Button

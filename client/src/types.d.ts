@@ -1,4 +1,4 @@
-type SortOptions = 'most-upvotes' | 'least-upvotes' | 'most-comments' | 'least-comments'
+type SortOption = 'Most Upvotes' | 'Least Upvotes' | 'Most Comments' | 'Least Comments'
 
 type User = {
     id: string
@@ -26,6 +26,6 @@ type Feedback = {
     title: string
     description: string
     upvotes: number
-    category: 'Feature' | 'UI' | 'UX' | 'Enhancement' | 'Bug'
+    category: string
     comments: FeedbackComment[]
 }

@@ -6,7 +6,7 @@ import FeedbackList from '../../components/feedbackList/FeedbackList'
 
 export default function Suggestions() {
     const [filters, setFilters] = useState<string[]>([])
-    const [sortTerm, setSortTerm] = useState<SortOptions>('most-upvotes')
+    const [sortTerm, setSortTerm] = useState<string>('Most Upvotes')
 
     return (
         <>

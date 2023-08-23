@@ -32,24 +32,6 @@
     font-size: 13px;
 }
 
-.textarea {
-    height: 80px;
-    width: 100%;
-    padding: 16px;
-    font-family: inherit;
-    background-color: var(--clr-white-600);
-    border: none;
-    border-radius: 5px;
-}
-
-.textarea::placeholder {
-    color: #8C92B3;
-}
-
-.textarea:is(:hover, :focus) {
-    outline: none;
-}
-
 .comment {
     display: grid;
     padding-block: 24px;

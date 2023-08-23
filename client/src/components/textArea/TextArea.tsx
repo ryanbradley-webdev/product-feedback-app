@@ -1,12 +1,14 @@
 import { SetStateAction, Dispatch } from 'react'
-import styles from './comments.module.css'
+import styles from './textArea.module.css'
 
 export default function TextArea({
     userComment,
-    setUserComment
+    setUserComment,
+    placeholder
 }: {
     userComment: string
     setUserComment: Dispatch<SetStateAction<string>>
+    placeholder?: boolean
 }) {
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value.length > 250) {
@@ -24,7 +26,7 @@ export default function TextArea({
             cols={30}
             onChange={handleChange}
             value={userComment}
-            placeholder='Type your comment here'
+            placeholder={placeholder ? 'Type your comment here' : ''}
             className={styles.textarea}
         />
     )

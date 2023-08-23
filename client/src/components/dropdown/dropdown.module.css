@@ -1,0 +1,36 @@
+.dropdown {
+    position: absolute;
+    top: 64px;
+    display: grid;
+    height: 0;
+    width: 255px;
+    border-radius: var(--radius-btn);
+    overflow: hidden;
+    box-shadow: 0 10px 40px -7px #373f6859;
+    transition: height 0.25s ease;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    width: 100%;
+    padding-inline: 24px;
+    background-color: var(--clr-white-900);
+    border: none;
+    text-align: left;
+    font-size: 16px;
+}
+
+.option:not(:last-child) {
+    border-bottom: 1px solid #3A437340;
+}
+
+.option[data-selected='true'] {
+    color: var(--clr-purple-900);
+}
+
+.option[data-selected='true']::after {
+    content: url(/check-icon.svg);
+}

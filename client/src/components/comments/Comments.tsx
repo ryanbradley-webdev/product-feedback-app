@@ -3,7 +3,7 @@ import styles from './comments.module.css'
 import Button from '../button/Button'
 import CommentPost from './CommentPost'
 import { getCommentLength } from '../../util/getCommentLength'
-import TextArea from './TextArea'
+import TextArea from '../textArea/TextArea'
 
 export default function Comments({
     id,
@@ -75,6 +75,7 @@ export default function Comments({
                 <TextArea
                     userComment={userComment}
                     setUserComment={setUserComment}
+                    placeholder
                 />
 
                 <div>

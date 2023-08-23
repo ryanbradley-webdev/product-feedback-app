@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
-import './App.css'
 import Suggestions from './routes/suggestions/Suggestions'
 import Roadmap from './routes/roadmap/Roadmap'
-import FeedbackForm from './components/feedbackForm/FeedbackForm'
+import FeedbackForm from './routes/feedbackForm/FeedbackForm'
 import Feedback from './routes/feedback/Feedback'
+import './App.css'
 
 function App() {
   return (
