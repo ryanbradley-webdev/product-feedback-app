@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from './feedback.module.css'
 import { useQuery } from '@tanstack/react-query'
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
@@ -16,6 +16,8 @@ export default function Feedback() {
 
     const feedback = items?.find(item => item.id === id)
 
+    const navigate = useNavigate()
+
     return (
         <main
             className={styles.main}
@@ -26,6 +28,7 @@ export default function Feedback() {
 
                 <Button
                     back
+                    onClick={() => navigate(-1)}
                 >
                     Go Back
                 </Button>
