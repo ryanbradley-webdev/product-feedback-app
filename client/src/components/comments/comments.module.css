@@ -1,0 +1,44 @@
+.comments,
+.add_comment {
+    display: grid;
+    padding: 24px;
+    background-color: var(--clr-white-900);
+    border-radius: var(--radius-btn);
+}
+
+:where(.comments, .add_comment) h3 {
+    color: var(--clr-blue-600);
+}
+
+.add_comment {
+    row-gap: 16px;
+}
+
+.add_comment > h3 {
+    margin-bottom: 8px;
+}
+
+.add_comment > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--clr-grey-300);
+    font-size: 13px;
+}
+
+.add_comment textarea {
+    min-height: 80px;
+    padding: 16px;
+    font-family: inherit;
+    background-color: var(--clr-white-600);
+    border: none;
+    border-radius: 5px;
+}
+
+.add_comment textarea::placeholder {
+    color: #8C92B3;
+}
+
+.add_comment textarea:is(:hover, :focus) {
+    outline: none;
+}

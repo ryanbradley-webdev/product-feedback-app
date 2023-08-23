@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../../components/feedbackCard/FeedbackCard'
 import Button from '../../components/button/Button'
+import Comments from '../../components/comments/Comments'
 
 export default function Feedback() {
     const { id } = useParams()
@@ -45,9 +46,17 @@ export default function Feedback() {
 
             {
                 feedback ? (
-                    <FeedbackCard
-                        {...feedback}
-                    />
+                    <>
+                    
+                        <FeedbackCard
+                            {...feedback}
+                        />
+
+                        <Comments
+                            comments={feedback.comments}
+                        />
+
+                    </>
                 ) : (
                     'No feedback found'
                 )
