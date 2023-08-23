@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import styles from './feedbackCard.module.css'
 import Chip from '../chip/Chip'
 import Upvote from '../upvote/Upvote'
+import CommentChip from '../commentChip/CommentChip'
 
 export default function FeedbackCard({
     id,
@@ -43,9 +44,9 @@ export default function FeedbackCard({
                     upvotes={upvotes}
                 />
 
-                <div>
-                    {comments.length}
-                </div>
+                <CommentChip
+                    commentCount={comments.length}
+                />
 
             </div>
 
