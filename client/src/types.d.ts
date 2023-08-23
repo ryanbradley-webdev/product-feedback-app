@@ -7,11 +7,11 @@ type User = {
     profileImg?: string
 }
 
-type Comment = {
+type FeedbackComment = {
     id: string
     user: User
     comment: string
-    replies: Comment[]
+    replies: FeedbackComment[]
 }
 
 type Feedback = {
@@ -20,5 +20,5 @@ type Feedback = {
     description: string
     upvotes: number
     category: 'Feature' | 'UI' | 'UX' | 'Enhancement' | 'Bug'
-    comments: Comment[]
+    comments: FeedbackComment[]
 }

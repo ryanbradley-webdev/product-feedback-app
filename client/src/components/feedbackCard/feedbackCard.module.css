@@ -6,6 +6,7 @@
     border-radius: var(--radius-btn);
     text-decoration: none;
     color: inherit;
+    background-color: var(--clr-white-900);
 }
 
 .content h5 {

@@ -1,7 +1,8 @@
 .list {
+    display: grid;
+    row-gap: 16px;
     margin-block: 32px;
     margin-inline: 24px;
-    background-color: var(--clr-white-900);
     border-radius: var(--radius-btn);
 }
 
