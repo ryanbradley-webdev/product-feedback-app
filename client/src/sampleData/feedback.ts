@@ -46,7 +46,19 @@ export const SAMPLE_FEEDBACK: Feedback[] = [
                     handle: '@hexagon.bestagon',
                     profileImg: ''
                 },
-                replies: []
+                replies: [
+                    {
+                        id: '832',
+                        replyTo: '@hexagon.bestagon',
+                        comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                        user: {
+                            id: '5432',
+                            name: 'Elijah Moss',
+                            handle: '@hexagon.bestagon',
+                            profileImg: ''
+                        }
+                    }
+                ]
             }
         ]
     }

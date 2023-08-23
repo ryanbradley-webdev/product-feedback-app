@@ -7,11 +7,18 @@ type User = {
     profileImg?: string
 }
 
-type FeedbackComment = {
+type BasicComment = {
     id: string
     user: User
     comment: string
-    replies: FeedbackComment[]
+}
+
+type FeedbackComment = BasicComment & {
+    replies: FeedbackCommentReply[]
+}
+
+type FeedbackCommentReply = BasicComment & {
+    replyTo: string
 }
 
 type Feedback = {

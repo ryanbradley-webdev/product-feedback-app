@@ -2,6 +2,7 @@ import { useState } from 'react'
 import styles from './comments.module.css'
 import Button from '../button/Button'
 import CommentPost from './CommentPost'
+import { getCommentLength } from '../../util/getCommentLength'
 
 export default function Comments({
     comments
@@ -9,6 +10,8 @@ export default function Comments({
     comments: FeedbackComment[]
 }) {
     const [userComment, setUserComment] = useState('')
+
+    const commentCount = getCommentLength(comments)
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value.length > 250) {
@@ -30,7 +33,7 @@ export default function Comments({
             >
                 
                 <h3>
-                    {comments.length} Comment{comments.length !== 1 && 's'}
+                    {commentCount} Comment{commentCount !== 1 && 's'}
                 </h3>
 
                 {

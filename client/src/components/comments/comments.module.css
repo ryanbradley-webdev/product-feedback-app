@@ -1,8 +1,13 @@
 .comments,
-.add_comment {
+.add_comment,
+.replies {
     display: grid;
     padding: 24px;
     background-color: var(--clr-white-900);
+}
+
+.comments,
+.add_comment {
     border-radius: var(--radius-btn);
 }
 
@@ -50,6 +55,10 @@
     padding-block: 24px;
 }
 
+.comment:not(:last-child) {
+    border-bottom: 1px solid #8e93b440;
+}
+
 .comment:last-child {
     padding-bottom: 0;
 }
@@ -85,4 +94,16 @@
 
 .img_placeholder {
     background-color: var(--clr-grey-900);
+}
+
+.replies {
+    margin-top: 24px;
+    padding-block: 0;
+    padding-left: 23px;
+    border-left: 1px solid #6471961a;
+}
+
+.purple_text {
+    font-weight: bold;
+    color: var(--clr-purple-900);
 }

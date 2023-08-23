@@ -3,6 +3,7 @@ import styles from './feedbackCard.module.css'
 import Chip from '../chip/Chip'
 import Upvote from '../upvote/Upvote'
 import CommentChip from '../commentChip/CommentChip'
+import { getCommentLength } from '../../util/getCommentLength'
 
 export default function FeedbackCard({
     id,
@@ -45,7 +46,7 @@ export default function FeedbackCard({
                 />
 
                 <CommentChip
-                    commentCount={comments.length}
+                    commentCount={getCommentLength(comments)}
                 />
 
             </div>

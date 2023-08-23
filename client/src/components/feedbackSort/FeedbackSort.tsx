@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { capitalize } from '../../../util/capitalize'
+import { capitalize } from '../../util/capitalize'
 import styles from './feedbackSort.module.css'
 import Button from '../button/Button'
 import { Link } from 'react-router-dom'

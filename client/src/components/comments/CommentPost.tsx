@@ -1,16 +1,12 @@
 import { useState } from 'react'
 import styles from './comments.module.css'
+import CommentContent from './CommentContent'
 
 export default function CommentPost({
     user,
     replies,
     comment
 }: FeedbackComment) {
-    const {
-        name,
-        handle,
-        profileImg
-    } = user
 
     const [replyOpen, setReplyOpen] = useState(false)
 
@@ -23,54 +19,28 @@ export default function CommentPost({
             className={styles.comment}
         >
 
-            <div
-                className={styles.user_info}
-            >
-
-                {
-                    profileImg ? (
-                        <img
-                            src={profileImg}
-                            alt=""
-                            className={styles.img}
-                        />
-                    ) : (
-                        <div className={styles.img_placeholder}></div>
-                    )
-                }
-
-                <div>
-
-                    <h5>
-                        {name}
-                    </h5>
-
-                    <p>
-                        {handle}
-                    </p>
-
-                </div>
-
-                <button
-                    onClick={openReply}
-                >
-                    Reply
-                </button>
-
-            </div>
-
-            <p>
-                {comment}
-            </p>
+            <CommentContent
+                comment={comment}
+                openReply={openReply}
+                {...user}
+            />
 
             {
-                replies && (
-                    replies.map(reply => (
-                        <CommentPost
-                            key={reply.id}
-                            {...reply}
-                        />
-                    ))
+                replies?.length > 0 && (
+                    <div
+                        className={styles.replies}
+                    >
+
+                        {replies.map(reply => (
+                            <CommentContent
+                                key={reply.id}
+                                openReply={openReply}
+                                {...reply.user}
+                                {...reply}
+                            />
+                        ))}
+
+                    </div>
                 )
             }
 
