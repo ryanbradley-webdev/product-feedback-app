@@ -5,6 +5,8 @@ import Button from '../button/Button'
 import { Link } from 'react-router-dom'
 import DownCaret from '../../assets/DownCaret'
 import Dropdown from '../dropdown/Dropdown'
+import { useQuery } from '@tanstack/react-query'
+import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 
 export default function FeedbackList({
     sortTerm,
@@ -14,6 +16,11 @@ export default function FeedbackList({
     setSortTerm: Dispatch<SetStateAction<string>>
 }) {
     const [optionsVisible, setOptionsVisible] = useState(false)
+
+    const { data: items } = useQuery({
+        queryFn: () => SAMPLE_FEEDBACK,
+        queryKey: ['feedback']
+    })
 
     const toggleOptions = () => {
         setOptionsVisible(!optionsVisible)
@@ -28,6 +35,16 @@ export default function FeedbackList({
         <div
             className={styles.sort}
         >
+
+            <div
+                className={styles.count}
+            >
+
+                <h3>
+                    {items?.length || 0} Suggestions
+                </h3>
+
+            </div>
                 
             <Button
                 color='dark-blue'

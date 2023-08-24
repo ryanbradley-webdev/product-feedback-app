@@ -18,9 +18,9 @@ export default function Dropdown({
             className={styles.dropdown}
             style={{
                 height: visible ? options.length * 48 + 'px' : '',
-                width: fullWidth ? '100%' : '',
-                left: fullWidth ? '0' : '40px'
+                width: fullWidth ? '100%' : ''
             }}
+            data-fullwidth={fullWidth || false}
             aria-hidden={!visible}
         >
 

@@ -11,6 +11,20 @@
     z-index: 10;
 }
 
+.dropdown[data-fullwidth='true'] {
+    left: 0;
+}
+
+.dropdown[data-fullwidth='false'] {
+    left: 40px;
+}
+
+@media screen and (min-width: 721px) {
+    .dropdown[data-fullwidth='false'] {
+        left: 214px;
+    }
+}
+
 .option {
     display: flex;
     align-items: center;

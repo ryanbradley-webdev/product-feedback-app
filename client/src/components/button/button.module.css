@@ -40,6 +40,14 @@
     background-color: var(--clr-blue-300);
 }
 
+.dark-blue > svg {
+    margin-left: 9px;
+}
+
+.dark-blue > svg path {
+    stroke: var(--clr-white-900);
+}
+
 .grey-blue {
     background-color: var(--clr-blue-600);
 }

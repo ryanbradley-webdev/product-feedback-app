@@ -8,6 +8,44 @@
     background-color: var(--clr-blue-300);
 }
 
+@media screen and (min-width: 721px) {
+    .sort {
+        justify-content: flex-start;
+        gap: 22px
+    }
+
+    .sort > a:last-child {
+        margin-left: auto;
+    }
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: 12px;
+    color: var(--clr-white-900);
+}
+
+@media screen and (max-width: 720px) {
+    .count {
+        display: none;
+    }
+}
+
+.count::before {
+    content: url(/icon-suggestions.svg);
+}
+
+@media screen and (min-width: 721px) {
+    .sort {
+        margin-inline: 39px;
+        padding-inline: 12px;
+        padding-block: 14px;
+        border-radius: var(--radius-btn);
+    }
+}
+
 .sort > button:first-child span {
     font-weight: 400;
 }
