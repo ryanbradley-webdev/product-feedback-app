@@ -20,6 +20,10 @@
     background-color: transparent;
 }
 
+.bare:is(:hover, :focus) {
+    text-decoration: underline;
+}
+
 .purple,
 .blue,
 .dark-blue,

@@ -90,6 +90,10 @@
     border-radius: 5px;
 }
 
+.field input:is(:hover, :focus) {
+    outline: 1px solid var(--clr-blue-800);
+}
+
 .btn_div {
     display: grid;
     row-gap: 16px;

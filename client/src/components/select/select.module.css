@@ -1,8 +1,10 @@
 .select {
     position: relative;
+    display: flex;
+    align-items: center;
     height: 48px;
     width: 100%;
-    padding: 16px;
+    padding-inline: 16px;
     font-family: inherit;
     font-size: 13px;
     color: var(--clr-blue-600);
@@ -10,6 +12,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.select:is(:hover, :focus) {
+    outline: 1px solid var(--clr-blue-800);
 }
 
 .select::after {

@@ -128,6 +128,7 @@ export default function FeedbackForm() {
                             <Select
                                 selectedOption={status}
                                 options={[
+                                    'Suggestion',
                                     'Planned',
                                     'In-Progress',
                                     'Live'

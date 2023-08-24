@@ -20,9 +20,9 @@ export default function FeedbackList({
     const filteredItems = 
         filters.length > 0
         ? 
-        items?.filter(item => filters.includes(item.category))
+        items?.filter(item => filters.includes(item.category) && item.status === 'Suggestion')
         : 
-        items
+        items?.filter(item => item.status === 'Suggestion')
 
     return (
         <section

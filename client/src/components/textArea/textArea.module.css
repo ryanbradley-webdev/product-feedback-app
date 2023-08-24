@@ -15,5 +15,5 @@
 }
 
 .textarea:is(:hover, :focus) {
-    outline: none;
+    outline: 1px solid var(--clr-blue-800);
 }

@@ -84,5 +84,137 @@ export const SAMPLE_FEEDBACK: Feedback[] = [
                 ]
             }
         ]
+    },
+    {
+        id: '4576',
+        title: 'Suggestion 1',
+        description: 'Easier to search for solutions based on a specific stack',
+        category: 'UI',
+        upvotes: 112,
+        status: 'Suggestion',
+        comments: [
+            {
+                id: '643',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: []
+            },
+            {
+                id: '45678',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: [
+                    {
+                        id: '832',
+                        replyTo: '@hexagon.bestagon',
+                        comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                        user: {
+                            id: '5432',
+                            name: 'Elijah Moss',
+                            handle: '@hexagon.bestagon',
+                            profileImg: ''
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: '9678',
+        title: 'Suggestion 2',
+        description: 'Easier to search for solutions based on a specific stack',
+        category: 'UX',
+        upvotes: 112,
+        status: 'Suggestion',
+        comments: [
+            {
+                id: '643',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: []
+            },
+            {
+                id: '45678',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: [
+                    {
+                        id: '832',
+                        replyTo: '@hexagon.bestagon',
+                        comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                        user: {
+                            id: '5432',
+                            name: 'Elijah Moss',
+                            handle: '@hexagon.bestagon',
+                            profileImg: ''
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: '45',
+        title: 'Suggestion',
+        description: 'Easier to search for solutions based on a specific stack',
+        category: 'Enhancement',
+        upvotes: 112,
+        status: 'Suggestion',
+        comments: [
+            {
+                id: '643',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: []
+            },
+            {
+                id: '45678',
+                comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                user: {
+                    id: '5432',
+                    name: 'Elijah Moss',
+                    handle: '@hexagon.bestagon',
+                    profileImg: ''
+                },
+                replies: [
+                    {
+                        id: '832',
+                        replyTo: '@hexagon.bestagon',
+                        comment: 'Also, please allow styles to be applied based on system preferences. I would love to be able to browse Frontend Mentor in the evening after my device\'s dark mode turns on without the bright background it currently has.',
+                        user: {
+                            id: '5432',
+                            name: 'Elijah Moss',
+                            handle: '@hexagon.bestagon',
+                            profileImg: ''
+                        }
+                    }
+                ]
+            }
+        ]
     }
 ]
