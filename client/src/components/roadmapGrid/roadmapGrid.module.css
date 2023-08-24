@@ -1,5 +1,38 @@
-.grid {
+.roadmap {
     display: grid;
+}
+
+@media screen and (min-width: 481px) {
+    .roadmap {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.grid {
+    padding: 24px;
+}
+
+.grid > a {
+    margin-bottom: 16px;
+}
+
+@media screen and (max-width: 480px) {
+    .grid[data-selected='false'] {
+        display: none;
+    }
+}
+
+.grid_head {
+    margin-bottom: 24px;
+}
+
+.grid_head h3 {
+    color: var(--clr-blue-600);
+}
+
+.grid_head p {
+    color: var(--clr-grey-300);
+    font-size: 13px;
 }
 
 .status_bar {
@@ -7,6 +40,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: 100%;
+    border-bottom: 1px solid #8e93b442;
+}
+
+@media screen and (min-width: 481px) {
+    .status_bar {
+        display: none;
+    }
 }
 
 .status_bar button {
