@@ -105,6 +105,22 @@
     border-left: 1px solid #6471961a;
 }
 
+.replies > p {
+    margin-bottom: 24px;
+}
+
+@media screen and (min-width: 721px) {
+    .replies > p {
+        margin-bottom: 17px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .replies > p {
+        margin-bottom: 32px;
+    }
+}
+
 .purple_text {
     font-weight: bold;
     color: var(--clr-purple-900);
