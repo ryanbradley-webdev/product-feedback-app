@@ -54,6 +54,10 @@ export default function FeedbackForm() {
         setTitle(e.target.value)
     }
 
+    const handleDelete = () => {
+
+    }
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
     }
@@ -239,6 +243,9 @@ export default function FeedbackForm() {
             <div
                 ref={cancelRef}
                 className={styles.modal_wrapper}
+                style={{
+                    display: 'none'
+                }}
             >
 
                 <div
@@ -262,6 +269,7 @@ export default function FeedbackForm() {
 
                         <Button
                             color='red'
+                            onClick={() => navigate(-1)}
                         >
                             Discard
                         </Button>
@@ -277,6 +285,9 @@ export default function FeedbackForm() {
                     <div
                         ref={deleteRef}
                         className={styles.modal_wrapper}
+                        style={{
+                            display: 'none'
+                        }}
                     >
 
                         <div
@@ -304,6 +315,7 @@ export default function FeedbackForm() {
 
                                 <Button
                                     color='red'
+                                    onClick={handleDelete}
                                 >
                                     Delete
                                 </Button>
