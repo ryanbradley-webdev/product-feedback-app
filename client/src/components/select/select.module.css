@@ -19,7 +19,7 @@
 }
 
 .select::after {
-    content: url(./icon-down-arrow.svg);
+    content: url(/icon-down-arrow.svg);
     position: absolute;
     right: 16px;
     top: 12.5px;
