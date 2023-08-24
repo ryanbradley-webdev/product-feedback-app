@@ -3,7 +3,7 @@ import Button from '../../components/button/Button'
 import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import { useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
@@ -29,7 +29,20 @@ export default function FeedbackForm() {
     const [titleInvalid, setTitleInvalid] = useState(false)
     const [descriptionInvalid, setDescriptionInvalid] = useState(false)
 
+    const deleteRef = useRef<HTMLDivElement>(null)
+    const cancelRef = useRef<HTMLDivElement>(null)
+
     const navigate = useNavigate()
+
+    const toggleModal = (ref: React.RefObject<HTMLDivElement>) => {
+        if (ref.current) {
+            if (ref.current.style.display) {
+                ref.current.style.display = ''
+            } else {
+                ref.current.style.display = 'none'
+            }
+        }
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.value) {
@@ -46,177 +59,263 @@ export default function FeedbackForm() {
     }
 
     return (
-        <main
-            className={styles.main}
-        >
-            
-            <header
-                className={styles.header}
+        <>
+
+            <main
+                className={styles.main}
             >
-
-                <Button
-                    back
-                    onClick={() => navigate(-1)}
-                >
-                    Go Back
-                </Button>
-
-            </header>
-
-            <form
-                onSubmit={handleSubmit}
-                className={styles.form}
-            >
-
-                <img
-                    src={editId ? EditIcon : NewIcon}
-                />
-
-                <h3>
-                    {editId ? 'Editing \'' + title + '\'' : 'Create New Feedback'}
-                </h3>
-
-                <div
-                    className={styles.field}
-                >
-
-                    <h5>
-                        Feedback Title
-                    </h5>
-
-                    <p>
-                        Add a short, descriptive headline
-                    </p>
-
-                    <input
-                        type="text"
-                        name="title"
-                        id="title"
-                        value={title}
-                        onChange={handleChange}
-                        aria-invalid={titleInvalid}
-                    />
-
-                    {
-                        titleInvalid && (
-                            <p
-                                data-invalid={true}
-                            >
-                                Can&apos;t be empty
-                            </p>
-                        )
-                    }
-
-                </div>
-
-                <div
-                    className={styles.field}
-                >
-
-                    <h5>
-                        Category
-                    </h5>
-
-                    <p>
-                        Choose a category for your feedback
-                    </p>
-
-                    <Select
-                        selectedOption={category}
-                        options={[
-                            'UI',
-                            'UX',
-                            'Feature',
-                            'Enhancement',
-                            'Bug'
-                        ]}
-                        setOption={setCategory}
-                    />
-
-                </div>
-
-                {
-                    editId && (
-                        <div
-                            className={styles.field}
-                        >
-
-                            <h5>
-                                Update Status
-                            </h5>
-
-                            <p>
-                                Change feature state
-                            </p>
-
-                            <Select
-                                selectedOption={status}
-                                options={[
-                                    'Suggestion',
-                                    'Planned',
-                                    'In-Progress',
-                                    'Live'
-                                ]}
-                                setOption={setStatus}
-                            />
-
-                        </div>
-                    )
-                }
-
-                <div
-                    className={styles.field}
-                >
-
-                    <h5>
-                        Feedback Detail
-                    </h5>
-
-                    <p>
-                        Include any specific comments on what should be improved, added, etc.
-                    </p>
-
-                    <TextArea
-                        userComment={description}
-                        setUserComment={setDescription}
-                        invalid={descriptionInvalid}
-                        setInvalid={setDescriptionInvalid}
-                    />
-
-                </div>
-
-                <div
-                    className={styles.btn_div}
+                
+                <header
+                    className={styles.header}
                 >
 
                     <Button
-                        color='purple'
+                        back
+                        onClick={() => navigate(-1)}
                     >
-                        {editId ? 'Save Changes' : 'Add Feedback'}
+                        Go Back
                     </Button>
 
-                    <Button
-                        color='grey-blue'
-                        type='button'
+                </header>
+
+                <form
+                    onSubmit={handleSubmit}
+                    className={styles.form}
+                >
+
+                    <img
+                        src={editId ? EditIcon : NewIcon}
+                    />
+
+                    <h3>
+                        {editId ? 'Editing \'' + title + '\'' : 'Create New Feedback'}
+                    </h3>
+
+                    <div
+                        className={styles.field}
                     >
-                        Cancel
-                    </Button>
+
+                        <h5>
+                            Feedback Title
+                        </h5>
+
+                        <p>
+                            Add a short, descriptive headline
+                        </p>
+
+                        <input
+                            type="text"
+                            name="title"
+                            id="title"
+                            value={title}
+                            onChange={handleChange}
+                            aria-invalid={titleInvalid}
+                        />
+
+                        {
+                            titleInvalid && (
+                                <p
+                                    data-invalid={true}
+                                >
+                                    Can&apos;t be empty
+                                </p>
+                            )
+                        }
+
+                    </div>
+
+                    <div
+                        className={styles.field}
+                    >
+
+                        <h5>
+                            Category
+                        </h5>
+
+                        <p>
+                            Choose a category for your feedback
+                        </p>
+
+                        <Select
+                            selectedOption={category}
+                            options={[
+                                'UI',
+                                'UX',
+                                'Feature',
+                                'Enhancement',
+                                'Bug'
+                            ]}
+                            setOption={setCategory}
+                        />
+
+                    </div>
 
                     {
                         editId && (
-                            <Button
-                                color='red'
-                                type='button'
+                            <div
+                                className={styles.field}
                             >
-                                Delete
-                            </Button>
+
+                                <h5>
+                                    Update Status
+                                </h5>
+
+                                <p>
+                                    Change feature state
+                                </p>
+
+                                <Select
+                                    selectedOption={status}
+                                    options={[
+                                        'Suggestion',
+                                        'Planned',
+                                        'In-Progress',
+                                        'Live'
+                                    ]}
+                                    setOption={setStatus}
+                                />
+
+                            </div>
                         )
                     }
 
+                    <div
+                        className={styles.field}
+                    >
+
+                        <h5>
+                            Feedback Detail
+                        </h5>
+
+                        <p>
+                            Include any specific comments on what should be improved, added, etc.
+                        </p>
+
+                        <TextArea
+                            userComment={description}
+                            setUserComment={setDescription}
+                            invalid={descriptionInvalid}
+                            setInvalid={setDescriptionInvalid}
+                        />
+
+                    </div>
+
+                    <div
+                        className={styles.btn_div}
+                    >
+
+                        <Button
+                            color='purple'
+                        >
+                            {editId ? 'Save Changes' : 'Add Feedback'}
+                        </Button>
+
+                        <Button
+                            color='grey-blue'
+                            type='button'
+                            onClick={() => toggleModal(cancelRef)}
+                        >
+                            Cancel
+                        </Button>
+
+                        {
+                            editId && (
+                                <Button
+                                    color='red'
+                                    type='button'
+                                    onClick={() => toggleModal(deleteRef)}
+                                >
+                                    Delete
+                                </Button>
+                            )
+                        }
+
+                    </div>
+
+                </form>
+                
+            </main>
+
+            <div
+                ref={cancelRef}
+                className={styles.modal_wrapper}
+            >
+
+                <div
+                    className={styles.modal}
+                >
+
+                    <h3>
+                        Discard {editId ? 'changes' : 'feedback'}?
+                    </h3>
+
+                    <div
+                        className={styles.btn_div}
+                    >
+
+                        <Button
+                            color='grey-blue'
+                            onClick={() => toggleModal(cancelRef)}
+                        >
+                            Cancel
+                        </Button>
+
+                        <Button
+                            color='red'
+                        >
+                            Discard
+                        </Button>
+
+                    </div>
+
                 </div>
 
-            </form>
-            
-        </main>
+            </div>
+
+            {
+                editId && (
+                    <div
+                        ref={deleteRef}
+                        className={styles.modal_wrapper}
+                    >
+
+                        <div
+                            className={styles.modal}
+                        >
+
+                            <h3>
+                                Delete feedback?
+                            </h3>
+
+                            <p>
+                                This can not be undone.
+                            </p>
+
+                            <div
+                                className={styles.btn_div}
+                            >
+
+                                <Button
+                                    color='grey-blue'
+                                    onClick={() => toggleModal(deleteRef)}
+                                >
+                                    Cancel
+                                </Button>
+
+                                <Button
+                                    color='red'
+                                >
+                                    Delete
+                                </Button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                )
+            }
+
+        </>
     )
 }
