@@ -39,6 +39,7 @@ export default function Chip({
     return (
         <label
             className={styles.chip}
+            data-clickable={setFilters !== undefined}
             {...props}
         >
 

@@ -72,6 +72,10 @@
     border-radius: 100%;
 }
 
+.card:is(:hover, :focus) .content h5 {
+    color: var(--clr-blue-800);
+}
+
 .content h5 {
     color: var(--clr-blue-600);
 }

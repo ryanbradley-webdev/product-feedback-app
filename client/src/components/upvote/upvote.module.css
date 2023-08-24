@@ -14,6 +14,19 @@
     border-radius: var(--radius-btn);
 }
 
+.upvote:is(:hover, :focus) {
+    background-color: var(--clr-grey-900);
+}
+
+.upvote[data-upvoted='true'] {
+    background-color: var(--clr-blue-800);
+}
+
+.upvote[data-upvoted='true'] * {
+    color: var(--clr-white-900);
+    stroke: var(--clr-white-900);
+}
+
 @media screen and (min-width: 481px) {
     .upvote[data-absolute='true'] {
         position: absolute;

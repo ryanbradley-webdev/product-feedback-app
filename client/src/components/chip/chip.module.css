@@ -11,6 +11,14 @@
     border-radius: var(--radius-btn);
 }
 
+.chip[data-clickable='true'] {
+    cursor: pointer;
+}
+
+.chip[data-clickable='true']:has(input:not(:checked)):is(:hover, :focus) {
+    background-color: var(--clr-grey-900);
+}
+
 @media screen and (max-width: 480px) {
     .chip {
         margin-bottom: 6px;
