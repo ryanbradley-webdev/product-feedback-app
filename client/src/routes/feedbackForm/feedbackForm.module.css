@@ -78,6 +78,12 @@
     }
 }
 
+.field > p[data-invalid='true'] {
+    color: var(--clr-red-900);
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
 .field input {
     height: 48px;
     width: 100%;
@@ -92,6 +98,10 @@
 
 .field input:is(:hover, :focus) {
     outline: 1px solid var(--clr-blue-800);
+}
+
+.field input[aria-invalid='true'] {
+    outline: 1px solid var(--clr-red-900);
 }
 
 .btn_div {

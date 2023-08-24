@@ -3,7 +3,7 @@ import Button from '../../components/button/Button'
 import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import { useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
@@ -26,7 +26,20 @@ export default function FeedbackForm() {
     const [category, setCategory] = useState(selectedFeedback?.category || 'UI')
     const [status, setStatus] = useState(selectedFeedback?.status || 'Planned')
 
+    const [titleInvalid, setTitleInvalid] = useState(false)
+    const [descriptionInvalid, setDescriptionInvalid] = useState(false)
+
     const navigate = useNavigate()
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.value) {
+            setTitleInvalid(true)
+        } else {
+            setTitleInvalid(false)
+        }
+
+        setTitle(e.target.value)
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -80,8 +93,19 @@ export default function FeedbackForm() {
                         name="title"
                         id="title"
                         value={title}
-                        onChange={e => setTitle(e.target.value)}
+                        onChange={handleChange}
+                        aria-invalid={titleInvalid}
                     />
+
+                    {
+                        titleInvalid && (
+                            <p
+                                data-invalid={true}
+                            >
+                                Can&apos;t be empty
+                            </p>
+                        )
+                    }
 
                 </div>
 
@@ -155,6 +179,8 @@ export default function FeedbackForm() {
                     <TextArea
                         userComment={description}
                         setUserComment={setDescription}
+                        invalid={descriptionInvalid}
+                        setInvalid={setDescriptionInvalid}
                     />
 
                 </div>

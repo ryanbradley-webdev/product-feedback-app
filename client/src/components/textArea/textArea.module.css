@@ -1,4 +1,5 @@
 .textarea {
+    position: relative;
     height: 80px;
     width: 100%;
     padding: 16px;
@@ -16,4 +17,8 @@
 
 .textarea:is(:hover, :focus) {
     outline: 1px solid var(--clr-blue-800);
+}
+
+.textarea[aria-invalid='true'] {
+    outline: 1px solid var(--clr-red-900);
 }
