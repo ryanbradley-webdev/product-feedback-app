@@ -11,6 +11,18 @@
     overflow: hidden;
 }
 
+@media screen and (min-width: 481px) {
+    .card {
+        flex-direction: row;
+        padding-inline: 112px 32px;
+        padding-block: 28px;
+    }
+
+    .content {
+        flex-grow: 1;
+    }
+}
+
 .card:has(.status)::before {
     content: '';
     position: absolute;
@@ -58,6 +70,13 @@
     margin-block: 8px;
 }
 
+@media screen and (min-width: 481px) {
+    .content p {
+        margin-top: 4px;
+        margin-bottom: 12px;
+    }
+}
+
 .content label {
     width: fit-content;
 }
@@ -67,4 +86,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+@media screen and (min-width: 481px) {
+    .interactions {
+        width: auto;
+    }
 }

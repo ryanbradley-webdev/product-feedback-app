@@ -5,10 +5,24 @@
     gap: 10px;
     height: 32px;
     padding-inline: 14px;
-    font: var(--font-h5);
-    letter-spacing: var(--space-h5);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: -0.18px;
     color: var(--clr-blue-600);
     background-color: var(--clr-white-600);
     border: none;
     border-radius: var(--radius-btn);
+}
+
+@media screen and (min-width: 481px) {
+    .upvote {
+        position: absolute;
+        top: 28px;
+        left: 32px;
+        display: grid;
+        justify-items: center;
+        padding-inline: 11px;
+        padding-block: 14px 8px;
+        height: fit-content;
+    }
 }
