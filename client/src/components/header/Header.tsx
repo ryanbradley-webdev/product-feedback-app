@@ -122,6 +122,13 @@ export default function Header({
 
                         <Link
                             to='/roadmap'
+                            aria-disabled={!items?.filter(item => (
+                                [
+                                    'Planned',
+                                    'In-Progress',
+                                    'Live'
+                                ].includes(item.status)
+                            )).length}
                         >
                         
                             View

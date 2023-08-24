@@ -47,6 +47,11 @@
     content: url(/icon-suggestions.svg);
 }
 
+.sort > button[aria-disabled='true'] {
+    opacity: 0.5;
+    cursor: default;
+}
+
 .sort > button:first-child span {
     font-weight: 400;
 }

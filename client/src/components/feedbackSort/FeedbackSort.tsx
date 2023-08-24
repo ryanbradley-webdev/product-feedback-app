@@ -22,6 +22,8 @@ export default function FeedbackList({
         queryKey: ['feedback']
     })
 
+    const suggestionCount = items?.filter(item => item.status === 'Suggestion').length
+
     const toggleOptions = () => {
         setOptionsVisible(!optionsVisible)
     }
@@ -41,7 +43,7 @@ export default function FeedbackList({
             >
 
                 <h3>
-                    {items?.length || 0} Suggestions
+                    {suggestionCount || 0} Suggestions
                 </h3>
 
             </div>
@@ -49,6 +51,7 @@ export default function FeedbackList({
             <Button
                 color='dark-blue'
                 onClick={toggleOptions}
+                aria-disabled={!suggestionCount}
             >
 
                 <span>
