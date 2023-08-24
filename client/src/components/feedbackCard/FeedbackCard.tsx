@@ -4,6 +4,7 @@ import Chip from '../chip/Chip'
 import Upvote from '../upvote/Upvote'
 import CommentChip from '../commentChip/CommentChip'
 import { getCommentLength } from '../../util/getCommentLength'
+import { useState } from 'react'
 
 export default function FeedbackCard({
     id,
@@ -17,6 +18,8 @@ export default function FeedbackCard({
 }: Feedback & {
     statused?: boolean
 }) {
+    const [localUpvotes, setLocalUpvotes] = useState(upvotes)
+
     return (
         <Link
             to={'/' + id}
@@ -57,7 +60,8 @@ export default function FeedbackCard({
             >
 
                 <Upvote
-                    upvotes={upvotes}
+                    upvotes={localUpvotes}
+                    setUpvotes={setLocalUpvotes}
                     grid={statused}
                 />
 
