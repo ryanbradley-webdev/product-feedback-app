@@ -1,8 +1,13 @@
 .main {
     min-height: 100vh;
-    padding-inline: 39px;
-    padding-block: 56px;
     background-color: var(--clr-white-300);
+}
+
+@media screen and (min-width: 721px) {
+    .main {
+        padding-inline: 39px;
+        padding-block: 56px;
+    }
 }
 
 @media screen and (min-width: 1188px) {

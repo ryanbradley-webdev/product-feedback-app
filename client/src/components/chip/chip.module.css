@@ -26,7 +26,7 @@
 }
 
 .chip input {
-    appearance: none;
+    display: none;
 }
 
 .chip:has(input:checked) {
