@@ -21,6 +21,7 @@
 
 .form {
     padding-inline: 24px;
+    padding-bottom: 24px;
     margin-top: 20px;
     background-color: var(--clr-white-900);
     border-radius: var(--radius-btn);
