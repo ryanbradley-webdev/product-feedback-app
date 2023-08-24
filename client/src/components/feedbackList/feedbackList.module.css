@@ -13,6 +13,12 @@
     }
 }
 
+@media screen and (min-width: 1188px) {
+    .list {
+        margin-inline: 0;
+    }
+}
+
 .no_feedback {
     display: grid;
     justify-items: center;

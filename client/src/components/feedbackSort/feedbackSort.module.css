@@ -11,11 +11,21 @@
 @media screen and (min-width: 721px) {
     .sort {
         justify-content: flex-start;
-        gap: 22px
+        gap: 22px;
+        margin-inline: 39px;
+        padding-inline: 12px;
+        padding-block: 14px;
+        border-radius: var(--radius-btn);
     }
 
     .sort > a:last-child {
         margin-left: auto;
+    }
+}
+
+@media screen and (min-width: 1188px) {
+    .sort {
+        margin-inline: 0;
     }
 }
 
@@ -35,15 +45,6 @@
 
 .count::before {
     content: url(/icon-suggestions.svg);
-}
-
-@media screen and (min-width: 721px) {
-    .sort {
-        margin-inline: 39px;
-        padding-inline: 12px;
-        padding-block: 14px;
-        border-radius: var(--radius-btn);
-    }
 }
 
 .sort > button:first-child span {
