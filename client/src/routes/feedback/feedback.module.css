@@ -2,6 +2,8 @@
     display: grid;
     row-gap: 24px;
     padding: 24px;
+    max-width: 730px;
+    margin-inline: auto;
 }
 
 @media screen and (min-width: 721px) {
