@@ -1,4 +1,8 @@
 node_modules
 design-assets
 
+client/dist/
+
 .env
+
+./.firebase/*
