@@ -2,6 +2,15 @@
     display: grid;
     row-gap: 24px;
     padding: 24px;
+    max-width: 588px;
+    margin-inline: auto;
+}
+
+@media screen and (min-width: 721px) {
+    .main {
+        row-gap: 32px;
+        padding-top: 56px;
+    }
 }
 
 .header {
@@ -28,6 +37,19 @@
     height: auto;
 }
 
+@media screen and (min-width: 721px) {
+    .form {
+        margin-top: 28px;
+        padding-inline: 42px;
+        padding-bottom: 40px;
+    }
+
+    .form > img {
+        margin-top: -28px;
+        width: 56px;
+    }
+}
+
 .form > h3,
 .field > h5 {
     color: var(--clr-blue-600);
@@ -39,6 +61,8 @@
 }
 
 .field h5 {
+    font-size: 14px;
+    letter-spacing: -0.19px;
     margin-bottom: 3px;
 }
 
@@ -46,6 +70,12 @@
     color: var(--clr-grey-300);
     font-size: 13px;
     margin-bottom: 16px;
+}
+
+@media screen and (min-width: 721px) {
+    .field > p {
+        font-size: 14px;
+    }
 }
 
 .field input {
@@ -64,4 +94,18 @@
     display: grid;
     row-gap: 16px;
     margin-top: 40px;
+}
+
+@media screen and (min-width: 721px) {
+    .btn_div {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 16px;
+        width: 100%;
+        margin-top: 32px;
+    }
+
+    .btn_div > button:nth-child(3) {
+        margin-right: auto;
+    }
 }

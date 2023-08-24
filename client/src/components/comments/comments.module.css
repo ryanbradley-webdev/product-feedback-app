@@ -72,7 +72,7 @@
 }
 
 @media screen and (min-width: 721px) {
-    :where(.comment, .replies) > p, form {
+    :where(.comment, .replies) > p, .reply_form {
         margin-left: 56px;
     }
 }
