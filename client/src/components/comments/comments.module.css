@@ -6,6 +6,17 @@
     background-color: var(--clr-white-900);
 }
 
+.replies {
+    padding-right: 0;
+}
+
+@media screen and (min-width: 721px) {
+    .comments,
+    .add_comment {
+        padding-inline: 32px;
+    }
+}
+
 .comments,
 .add_comment {
     border-radius: var(--radius-btn);
@@ -13,6 +24,8 @@
 
 :where(.comments, .add_comment) h3,
 .user_info h5 {
+    font-size: 14px;
+    letter-spacing: -0.19px;
     color: var(--clr-blue-600);
 }
 
@@ -58,6 +71,12 @@
     color: var(--clr-grey-300);
 }
 
+@media screen and (min-width: 721px) {
+    :where(.comment, .replies) > p, form {
+        margin-left: 56px;
+    }
+}
+
 .user_info button {
     margin-left: auto;
     color: var(--clr-blue-800);
@@ -97,4 +116,15 @@
     align-items: flex-end;
     gap: 16px;
     margin-top: 24px;
+}
+
+@media screen and (min-width: 721px) {
+    .reply_form {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .reply_form button {
+        width: 117px;
+    }
 }

@@ -4,6 +4,13 @@
     padding: 24px;
 }
 
+@media screen and (min-width: 721px) {
+    .main {
+        padding-inline: 40px;
+        padding-block: 56px;
+    }
+}
+
 .header {
     display: flex;
     align-items: center;
