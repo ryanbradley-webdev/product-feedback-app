@@ -6,6 +6,13 @@
     border-radius: var(--radius-btn);
 }
 
+@media screen and (min-width: 721px) {
+    .list {
+        margin-block: 24px;
+        margin-inline: 39px;
+    }
+}
+
 .no_feedback {
     display: grid;
     justify-items: center;
