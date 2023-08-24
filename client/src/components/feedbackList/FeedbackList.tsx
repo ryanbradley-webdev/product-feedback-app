@@ -7,11 +7,22 @@ import { Link } from 'react-router-dom'
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../feedbackCard/FeedbackCard'
 
-export default function FeedbackList() {
+export default function FeedbackList({
+    filters
+}: {
+    filters: string[]
+}) {
     const { data: items } = useQuery({
         queryFn: () => SAMPLE_FEEDBACK,
         queryKey: ['feedback']
     })
+
+    const filteredItems = 
+        filters.length > 0
+        ? 
+        items?.filter(item => filters.includes(item.category))
+        : 
+        items
 
     return (
         <section
@@ -19,8 +30,8 @@ export default function FeedbackList() {
         >
             
             {
-                items?.length ? (
-                    items.map(item => (
+                filteredItems?.length ? (
+                    filteredItems.map(item => (
                         <FeedbackCard
                             key={item.id}
                             {...item}

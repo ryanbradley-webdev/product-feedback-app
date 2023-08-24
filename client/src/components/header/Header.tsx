@@ -4,6 +4,8 @@ import CloseBtn from '../../assets/CloseBtn'
 import styles from './header.module.css'
 import Chip from '../chip/Chip'
 import { Link } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 
 export default function Header({
     filters,
@@ -13,6 +15,11 @@ export default function Header({
     setFilters: Dispatch<SetStateAction<string[]>>
 }) {
     const [menuVisible, setMenuVisible] = useState(false)
+
+    const { data: items } = useQuery({
+        queryFn: () => SAMPLE_FEEDBACK,
+        queryKey: ['feedback']
+    })
 
     const handleClick = () => {
         setMenuVisible(!menuVisible)
@@ -136,7 +143,7 @@ export default function Header({
                             </span>
 
                             <p>
-                                2
+                                {items?.filter(item => item.status === 'Planned').length || 0}
                             </p>
 
                         </div>
@@ -150,7 +157,7 @@ export default function Header({
                             </span>
 
                             <p>
-                                3
+                                {items?.filter(item => item.status === 'In-Progress').length || 0}
                             </p>
 
                         </div>
@@ -164,7 +171,7 @@ export default function Header({
                             </span>
 
                             <p>
-                                1
+                                {items?.filter(item => item.status === 'Live').length || 0}
                             </p>
 
                         </div>

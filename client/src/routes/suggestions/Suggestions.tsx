@@ -25,7 +25,9 @@ export default function Suggestions() {
                     setSortTerm={setSortTerm}
                 />
 
-                <FeedbackList />
+                <FeedbackList
+                    filters={filters}
+                />
 
             </main>
 
