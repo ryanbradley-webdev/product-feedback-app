@@ -1,0 +1,45 @@
+.grid {
+    display: grid;
+}
+
+.status_bar {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.status_bar button {
+    height: 60px;
+    color: var(--clr-blue-600);
+    background-color: transparent;
+    border: none;
+}
+
+.status_bar button[data-selected='false'] {
+    opacity: 0.4;
+}
+
+.status_bar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 4.5px;
+    width: 33.333%;
+    transition: all 0.15s ease-in-out;
+}
+
+.status_bar:has(button:first-child[data-selected='true'])::after {
+    background-color: var(--clr-orange-900);
+    left: 0;
+}
+
+.status_bar:has(button:nth-child(2)[data-selected='true'])::after {
+    background-color: var(--clr-purple-900);
+    left: 33.333%;
+}
+
+.status_bar:has(button:last-child[data-selected='true'])::after {
+    background-color: var(--clr-blue-900);
+    left: 66.666%;
+}

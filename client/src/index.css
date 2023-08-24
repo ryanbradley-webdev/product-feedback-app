@@ -45,7 +45,9 @@
 @media screen and (min-width: 481px) {
     :root {
         --font-h2: bold 20px/29px var(--font-fam);
+        --font-h5: bold 18px var(--font-fam);
         --space-h2: -0.25px;
+        --space-h5: -0.25px;
     }
 }
 

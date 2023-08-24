@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/button/Button'
 import styles from './roadmap.module.css'
-import FeedbackCard from '../../components/feedbackCard/FeedbackCard'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
+import RoadmapGrid from '../../components/roadmapGrid/RoadmapGrid'
 
 export default function Roadmap() {
     const navigate = useNavigate()
@@ -43,24 +42,7 @@ export default function Roadmap() {
 
             </header>
 
-            <section>
-
-                <FeedbackCard
-                    {...SAMPLE_FEEDBACK[0]}
-                    statused
-                />
-
-                <FeedbackCard
-                    {...SAMPLE_FEEDBACK[1]}
-                    statused
-                />
-
-                <FeedbackCard
-                    {...SAMPLE_FEEDBACK[2]}
-                    statused
-                />
-
-            </section>
+            <RoadmapGrid />
 
         </main>
     )
