@@ -14,7 +14,7 @@ export default function RoadmapGrid() {
 
     const plannedFeedback = items?.filter(item => item.status === 'Planned')
     const inProgressFeedback = items?.filter(item => item.status === 'In-Progress')
-    const liveFeedback = items?.filter(item => item.status === 'Planned')
+    const liveFeedback = items?.filter(item => item.status === 'Live')
 
     return (
         <section

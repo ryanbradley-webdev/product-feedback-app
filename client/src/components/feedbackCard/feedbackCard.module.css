@@ -11,8 +11,14 @@
     overflow: hidden;
 }
 
+.card:has(.status) .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @media screen and (min-width: 481px) {
-    .card {
+    .card:not(:has(.status)) {
         flex-direction: row;
         padding-inline: 112px 32px;
         padding-block: 28px;
@@ -20,6 +26,12 @@
 
     .content {
         flex-grow: 1;
+    }
+}
+
+@media screen and (min-width: 721px) {
+    .card:has(.status) {
+        padding-inline: 20px;
     }
 }
 

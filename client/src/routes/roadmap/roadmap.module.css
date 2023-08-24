@@ -1,6 +1,14 @@
 .main {
     min-height: 100vh;
+    padding-inline: 39px;
+    padding-block: 56px;
     background-color: var(--clr-white-300);
+}
+
+@media screen and (min-width: 1188px) {
+    .main {
+        padding-inline: calc(50% - 555px)
+    }
 }
 
 .header {
@@ -11,6 +19,12 @@
     height: 100px;
     padding-inline: 24px;
     background-color: var(--clr-blue-300);
+}
+
+@media screen and (min-width: 721px) {
+    .header {
+        border-radius: var(--radius-btn);
+    }
 }
 
 .header > div button {

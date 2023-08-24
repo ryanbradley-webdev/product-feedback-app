@@ -58,6 +58,7 @@ export default function FeedbackCard({
 
                 <Upvote
                     upvotes={upvotes}
+                    grid={statused}
                 />
 
                 <CommentChip

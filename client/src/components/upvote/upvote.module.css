@@ -15,7 +15,7 @@
 }
 
 @media screen and (min-width: 481px) {
-    .upvote {
+    .upvote[data-absolute='true'] {
         position: absolute;
         top: 28px;
         left: 32px;
@@ -24,5 +24,9 @@
         padding-inline: 11px;
         padding-block: 14px 8px;
         height: fit-content;
+    }
+
+    .upvote {
+        min-height: 40px;
     }
 }
