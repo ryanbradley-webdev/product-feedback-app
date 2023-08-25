@@ -1,7 +1,5 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import styles from './comments.module.css'
-import TextArea from '../textArea/TextArea'
-import Button from '../button/Button'
 import { UserContext } from '../../contexts/UserContext'
 
 export default function CommentContent({
@@ -10,43 +8,21 @@ export default function CommentContent({
     comment,
     profileImg,
     replyTo,
-    addReply
+    toggleReply
 }: {
     name: string
     handle: string
     comment: string
     profileImg?: string
     replyTo?: string
-    addReply: (newReply: FeedbackCommentReply) => void
+    toggleReply: (selectedReplyTo: string) => void
 }) {
     const {
         user
     } = useContext(UserContext)
 
-    const [userComment, setUserComment] = useState('')
-    const [replyOpen, setReplyOpen] = useState(false)
-
     const openReply = () => {
-        setReplyOpen(!replyOpen)
-    }
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-
-        if (!userComment || !user) {
-            return
-        }
-
-        const newReply: FeedbackCommentReply = {
-            comment: userComment,
-            user,
-            replyTo: handle
-        }
-
-        addReply(newReply)
-
-        setUserComment('')
-        setReplyOpen(false)
+        toggleReply(handle)
     }
 
     return (
@@ -102,29 +78,6 @@ export default function CommentContent({
                 {comment}
 
             </p>
-
-            {
-                replyOpen && (
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.reply_form}
-                    >
-
-                        <TextArea
-                            userComment={userComment}
-                            setUserComment={setUserComment}
-                            placeholder
-                        />
-
-                        <Button
-                            color='purple'
-                        >
-                            Post Reply
-                        </Button>
-
-                    </form>
-                )
-            }
         
         </>
     )

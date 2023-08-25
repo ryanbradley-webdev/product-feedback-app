@@ -10,10 +10,12 @@ export default function TextArea({
 }: {
     userComment: string
     setUserComment: Dispatch<SetStateAction<string>>
-    placeholder?: boolean
+    placeholder?: boolean | string
     invalid?: boolean
     setInvalid?: Dispatch<SetStateAction<boolean>>
 }) {
+    const placeholderMsg = placeholder ? typeof placeholder === 'string' ? placeholder : 'Type your comment here' : ''
+
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         if (e.target.value.length > 250) {
             return
@@ -39,7 +41,7 @@ export default function TextArea({
                 cols={30}
                 onChange={handleChange}
                 value={userComment}
-                placeholder={placeholder ? 'Type your comment here' : ''}
+                placeholder={placeholderMsg}
                 className={styles.textarea}
                 aria-invalid={invalid}
             />

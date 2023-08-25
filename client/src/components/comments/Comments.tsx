@@ -76,6 +76,7 @@ export default function Comments({
                         <CommentPost
                             key={crypto.randomUUID()}
                             updateComments={updateComments}
+                            commenter={comment.user}
                             {...comment}
                         />
                     ))
