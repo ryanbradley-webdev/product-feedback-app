@@ -1,7 +1,7 @@
 node_modules
 design-assets
 
-client/dist/
+dist/
 
 .env
 
