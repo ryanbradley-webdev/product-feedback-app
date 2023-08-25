@@ -60,6 +60,7 @@ export default function FeedbackCard({
             >
 
                 <Upvote
+                    id={id}
                     upvotes={localUpvotes}
                     setUpvotes={setLocalUpvotes}
                     grid={statused}
