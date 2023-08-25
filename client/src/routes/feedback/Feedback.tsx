@@ -53,12 +53,12 @@ export default function Feedback() {
 
                 <Link
                     to={'/edit?id=' + id}
-                    aria-disabled={!user || user.id !== feedback?.authorId}
+                    aria-disabled={!user || user.userId !== feedback?.authorId}
                 >
                 
                     <Button
                         color='blue'
-                        disabled={!user || user.id !== feedback?.authorId}
+                        disabled={!user || user.userId !== feedback?.authorId}
                     >
                         Edit Feedback
                     </Button>

@@ -102,7 +102,7 @@ export default function FeedbackForm() {
             status: editId ? status : 'Suggestion',
             upvotes: editId && selectedFeedback ? selectedFeedback.upvotes : 0,
             comments: editId && selectedFeedback ? selectedFeedback.comments : [],
-            authorId: user.id
+            authorId: user.userId
         }
 
         save({

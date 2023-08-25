@@ -16,6 +16,13 @@
     box-shadow: 0 10px 40px -7px #373f6859;
 }
 
+@media screen and (max-height: 936px) {
+    .modal {
+        max-height: 80vh;
+        overflow-y: scroll;
+    }
+}
+
 .modal p {
     font-size: 13px;
     color: var(--clr-grey-300);

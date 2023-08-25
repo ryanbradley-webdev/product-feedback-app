@@ -16,14 +16,17 @@ export default function Login({
     setVariant: Dispatch<SetStateAction<'login' | 'create'>>
 }) {
     const {
-        login
+        login,
+        signup
     } = useContext(UserContext)
 
+    const nameRef = useRef<HTMLInputElement>(null)
+    const handleRef = useRef<HTMLInputElement>(null)
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
     const passwordConfirmRef = useRef<HTMLInputElement>(null)
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleLogin = (e: React.FormEvent) => {
         e.preventDefault()
 
         if (!emailRef.current || !passwordRef.current) return
@@ -35,6 +38,23 @@ export default function Login({
 
         login(email, password)
     }
+
+    const handleCreate = (e: React.FormEvent) => {
+        e.preventDefault()
+
+        if (!emailRef.current || !passwordRef.current || !passwordConfirmRef.current || !nameRef.current || !handleRef.current) return
+
+        const email = emailRef.current.value
+        const password = passwordRef.current.value
+        const passwordConfirm = passwordConfirmRef.current.value
+        const name = nameRef.current.value
+        const handle = handleRef.current.value
+        const profileImg = ''
+
+        if (!email || !password || password !== passwordConfirm) return
+
+        signup(email, password, name, handle, profileImg)
+    }
     
     return (
         <Modal
@@ -43,14 +63,56 @@ export default function Login({
 
             <h5>
                 {variant === 'login' && 'Enter your information to log in'}
-                {variant === 'create' && 'Enter your email and choose a password'}
+                {variant === 'create' && 'Create a new account'}
             </h5>
 
             <form
-                onSubmit={handleSubmit}
+                onSubmit={variant === 'login' ? handleLogin : handleCreate}
                 className={styles.form}
                 aria-hidden={!visible}
             >
+
+                {
+                    variant === 'create' && (
+                        <>
+                        
+                            <label
+                                htmlFor="name"
+                            >
+
+                                <span>
+                                    Full Name
+                                </span>
+
+                                <input
+                                    type="text"
+                                    placeholder='e.g. John Doe'
+                                    required
+                                    ref={nameRef}
+                                />
+
+                            </label>
+                        
+                            <label
+                                htmlFor="name"
+                            >
+
+                                <span>
+                                    Username
+                                </span>
+
+                                <input
+                                    type="text"
+                                    placeholder='e.g. @johndoe'
+                                    required
+                                    ref={handleRef}
+                                />
+
+                            </label>
+                        
+                        </>
+                    )
+                }
 
                 <label
                     htmlFor="email"
@@ -63,6 +125,7 @@ export default function Login({
                     <input
                         type="email"
                         placeholder='e.g. johndoe@email.com'
+                        required
                         ref={emailRef}
                     />
 
@@ -78,6 +141,7 @@ export default function Login({
 
                     <input
                         type="password"
+                        required
                         ref={passwordRef}
                     />
 
@@ -95,6 +159,7 @@ export default function Login({
 
                             <input
                                 type="password"
+                                required
                                 ref={passwordConfirmRef}
                             />
 

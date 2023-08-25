@@ -15,7 +15,7 @@ export const getLoginInfo = async (userId: string) => {
         if (docIsUser(docData)) {
             return {
                 ...docData,
-                id: userId
+                userId
             }
         }
     }

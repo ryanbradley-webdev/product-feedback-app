@@ -1,7 +1,7 @@
 type SortOption = 'Most Upvotes' | 'Least Upvotes' | 'Most Comments' | 'Least Comments'
 
 type User = {
-    id: string
+    userId: string
     name: string
     handle: string
     profileImg?: string
@@ -37,6 +37,7 @@ type Feedback = FeedbackDraft & {
 
 type UserContext = {
     user: User | null,
+    signup: (email: string, password: string, name: string, handle: string, profileImg: string) => void
     login: (email: string, password: string) => void
     logout: () => void
     toggleFeedbackLike: (feedbackId: string, upvotes: number) => void
