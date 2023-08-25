@@ -1,23 +1,26 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './comments.module.css'
 import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
+import { UserContext } from '../../contexts/UserContext'
 
 export default function CommentContent({
-    feedbackId,
     name,
     handle,
     comment,
     profileImg,
-    replyTo
+    replyTo,
+    addReply
 }: {
-    feedbackId: string
     name: string
     handle: string
     comment: string
     profileImg?: string
     replyTo?: string
+    addReply: (newReply: FeedbackCommentReply) => void
 }) {
+    const { user } = useContext(UserContext)
+
     const [userComment, setUserComment] = useState('')
     const [replyOpen, setReplyOpen] = useState(false)
 
@@ -28,22 +31,17 @@ export default function CommentContent({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        if (!userComment) {
+        if (!userComment || !user) {
             return
         }
 
         const newReply: FeedbackCommentReply = {
             comment: userComment,
-            user: {
-                name: 'Elijah Moss',
-                handle: '@hexagon.bestagon',
-                profileImg: ''
-            },
+            user,
             replyTo: handle
         }
 
-        // FIXME add API call
-        console.log(newReply, feedbackId)
+        addReply(newReply)
 
         setUserComment('')
         setReplyOpen(false)

@@ -10,10 +10,12 @@ import { addComment } from '../../lib/addComment'
 
 export default function Comments({
     id,
-    comments
+    comments,
+    updateReplies
 }: {
     id: string
     comments: FeedbackComment[]
+    updateReplies: (comments: FeedbackComment[]) => void
 }) {
     const { user } = useContext(UserContext)
 
@@ -46,6 +48,18 @@ export default function Comments({
         setUserComment('')
     }
 
+    const updateComments = (updatedComment: FeedbackComment) => {
+        const updatedComments = comments.map(comment => {
+            if (comment.comment === updatedComment.comment) {
+                return updatedComment
+            }
+
+            return comment
+        })
+
+        updateReplies(updatedComments)
+    }
+
     return (
         <>
 
@@ -61,7 +75,7 @@ export default function Comments({
                     comments.map(comment => (
                         <CommentPost
                             key={crypto.randomUUID()}
-                            feedbackId={id}
+                            updateComments={updateComments}
                             {...comment}
                         />
                     ))

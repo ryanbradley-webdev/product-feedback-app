@@ -2,21 +2,32 @@ import styles from './comments.module.css'
 import CommentContent from './CommentContent'
 
 export default function CommentPost({
-    feedbackId,
     user,
     replies,
-    comment
+    comment,
+    updateComments
 }: FeedbackComment & {
-    feedbackId: string
+    updateComments: (comment: FeedbackComment) => void
 }) {
+    const addReply = (newReply: FeedbackCommentReply) => {
+        updateComments({
+            comment,
+            user,
+            replies: [
+                ...replies,
+                newReply
+            ]
+        })
+    }
+
     return (
         <div
             className={styles.comment}
         >
 
             <CommentContent
-                feedbackId={feedbackId}
                 comment={comment}
+                addReply={addReply}
                 {...user}
             />
 
@@ -28,7 +39,7 @@ export default function CommentPost({
 
                         {replies.map(reply => (
                             <CommentContent
-                                feedbackId={feedbackId}
+                                addReply={addReply}
                                 key={crypto.randomUUID()}
                                 {...reply.user}
                                 {...reply}

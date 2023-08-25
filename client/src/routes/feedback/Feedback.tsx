@@ -1,10 +1,11 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from './feedback.module.css'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import FeedbackCard from '../../components/feedbackCard/FeedbackCard'
 import Button from '../../components/button/Button'
 import Comments from '../../components/comments/Comments'
 import { getAllFeedback } from '../../lib/getAllFeedback'
+import { addReply } from '../../lib/addReply'
 
 export default function Feedback() {
     const { id } = useParams()
@@ -17,6 +18,17 @@ export default function Feedback() {
     const feedback = items?.find(item => item.id === id)
 
     const navigate = useNavigate()
+
+    const queryClient = useQueryClient()
+
+    const { mutate } = useMutation({
+        mutationFn: (comments: FeedbackComment[]) => addReply(comments, id),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['feedback'] })
+    })
+
+    const updateReplies = (comments: FeedbackComment[]) => {
+        mutate(comments)
+    }
 
     return (
         <main
@@ -58,6 +70,7 @@ export default function Feedback() {
                         <Comments
                             id={feedback.id}
                             comments={feedback.comments}
+                            updateReplies={updateReplies}
                         />
 
                     </>
