@@ -70,3 +70,13 @@
     width: fit-content;
     padding-inline: 0;
 }
+
+.form > button:last-child {
+    height: fit-content;
+    margin-inline: auto;
+    opacity: 0.7;
+}
+
+.form > button:last-child:is(:hover, :focus) {
+    opacity: 1;
+}

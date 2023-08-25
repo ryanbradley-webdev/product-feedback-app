@@ -26,6 +26,13 @@ export default function Login({
     const passwordRef = useRef<HTMLInputElement>(null)
     const passwordConfirmRef = useRef<HTMLInputElement>(null)
 
+    const addDemoCred = () => {
+        if (emailRef.current && passwordRef.current) {
+            emailRef.current.value = 'johndoe@email.com'
+            passwordRef.current.value = 'asdfasdf'
+        }
+    }
+
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -219,6 +226,17 @@ export default function Login({
                     )}
 
                 </div>
+
+                {
+                    variant === 'login' && (
+                        <Button
+                            onClick={addDemoCred}
+                            type='button'
+                        >
+                            Click here to use demo login credentials
+                        </Button>
+                    )
+                }
 
             </form>
 
