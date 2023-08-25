@@ -12,7 +12,16 @@
     border-radius: var(--radius-btn);
 }
 
-.bare {
+.purple:disabled,
+.blue:disabled,
+.dark-blue:disabled,
+.grey-blue:disabled,
+.red:disabled,
+.bare:disabled {
+    opacity: 0.3;
+}
+
+.bare:not(:disabled) {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -20,7 +29,7 @@
     background-color: transparent;
 }
 
-.bare:is(:hover, :focus) {
+.bare:not(:disabled):is(:hover, :focus) {
     text-decoration: underline;
 }
 
@@ -36,7 +45,7 @@
     background-color: var(--clr-purple-900);
 }
 
-.purple:is(:hover, :focus) {
+.purple:not(:disabled):is(:hover, :focus) {
     background-color: var(--clr-purple-600);
 }
 
@@ -56,7 +65,7 @@
     background-color: var(--clr-blue-600);
 }
 
-.grey-blue:is(:hover, :focus) {
+.grey-blue:not(:disabled):is(:hover, :focus) {
     background-color: var(--clr-grey-600);
 }
 
@@ -64,7 +73,7 @@
     background-color: var(--clr-blue-800);
 }
 
-.blue:is(:hover, :focus) {
+.blue:not(:disabled):is(:hover, :focus) {
     background-color: var(--clr-blue-700);
 }
 
@@ -72,6 +81,6 @@
     background-color: var(--clr-red-900);
 }
 
-.red:is(:hover, :focus) {
+.red:not(:disabled):is(:hover, :focus) {
     background-color: var(--clr-red-600);
 }

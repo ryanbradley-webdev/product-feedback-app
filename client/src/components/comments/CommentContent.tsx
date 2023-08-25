@@ -19,7 +19,9 @@ export default function CommentContent({
     replyTo?: string
     addReply: (newReply: FeedbackCommentReply) => void
 }) {
-    const { user } = useContext(UserContext)
+    const {
+        user
+    } = useContext(UserContext)
 
     const [userComment, setUserComment] = useState('')
     const [replyOpen, setReplyOpen] = useState(false)
@@ -80,6 +82,7 @@ export default function CommentContent({
 
                 <button
                     onClick={openReply}
+                    disabled={!user}
                 >
                     Reply
                 </button>

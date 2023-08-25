@@ -6,7 +6,11 @@ export const saveFeedback = async (feedback: FeedbackDraft, id: string | null) =
 
     const docRef = id ? doc(feedbackRef, id) : doc(feedbackRef)
 
-    const res = id ? await updateDoc(docRef, feedback) : await setDoc(docRef, feedback)
+    if (id) {
+        await updateDoc(docRef, feedback)
+    } else {
+        await setDoc(docRef, feedback)
+    }
 
-    return res
+    return docRef.id
 }

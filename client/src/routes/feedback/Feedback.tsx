@@ -1,13 +1,19 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import styles from './feedback.module.css'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import FeedbackCard from '../../components/feedbackCard/FeedbackCard'
 import Button from '../../components/button/Button'
 import Comments from '../../components/comments/Comments'
 import { getAllFeedback } from '../../lib/getAllFeedback'
 import { addReply } from '../../lib/addReply'
+import { UserContext } from '../../contexts/UserContext'
+import styles from './feedback.module.css'
+import { useContext } from 'react'
 
 export default function Feedback() {
+    const {
+        user
+    } = useContext(UserContext)
+
     const { id } = useParams()
 
     const { data: items } = useQuery({
@@ -47,10 +53,12 @@ export default function Feedback() {
 
                 <Link
                     to={'/edit?id=' + id}
+                    aria-disabled={!user || user.id !== feedback?.authorId}
                 >
                 
                     <Button
                         color='blue'
+                        disabled={!user || user.id !== feedback?.authorId}
                     >
                         Edit Feedback
                     </Button>

@@ -13,7 +13,10 @@ export const getLoginInfo = async (userId: string) => {
         const docData = querySnapshot.docs[0].data()
 
         if (docIsUser(docData)) {
-            return docData
+            return {
+                ...docData,
+                id: userId
+            }
         }
     }
 }

@@ -23,6 +23,8 @@ export default function Upvote({
     const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
+        if (!user) return
+
         const newUpvotes = isUpvoted ? upvotes - 1 : upvotes + 1
 
         toggleFeedbackLike(id, newUpvotes)

@@ -3,32 +3,52 @@ import Button from '../../components/button/Button'
 import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
 import TextArea from '../../components/textArea/TextArea'
 import { getAllFeedback } from '../../lib/getAllFeedback'
 import { saveFeedback } from '../../lib/saveFeedback'
 import Modal from '../../components/modal/Modal'
+import { UserContext } from '../../contexts/UserContext'
+import { deleteFeedback } from '../../lib/deleteFeedback'
 
 export default function FeedbackForm() {
+    const {
+        user
+    } = useContext(UserContext)
+
     const [searchParams] = useSearchParams()
 
     const editId = searchParams.get('id')
+
+    const navigate = useNavigate()
 
     const { data: items } = useQuery({
         queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 
-    const { mutate } = useMutation({
+    const {
+        mutate: save,
+        isLoading: saving
+    } = useMutation({
         mutationFn: ({
             feedback,
             id
         }: {
             feedback: FeedbackDraft,
             id: string | null
-        }) => saveFeedback(feedback, id)
+        }) => saveFeedback(feedback, id),
+        onSuccess: id => navigate('/' + id)
+    })
+
+    const {
+        mutate: remove,
+        isLoading: removing
+    } = useMutation({
+        mutationFn: (id: string) => deleteFeedback(id),
+        onSuccess: () => navigate('/')
     })
 
     const selectedFeedback = items?.find(feedback => feedback.id === editId)
@@ -43,8 +63,6 @@ export default function FeedbackForm() {
 
     const [deleteModalVisible, setDeleteModalVisible] = useState(false)
     const [cancelModalVisible, setCancelModalVisible] = useState(false)
-
-    const navigate = useNavigate()
 
     const toggleModal = (modal: 'delete' | 'cancel') => {
         if (modal === 'delete') {
@@ -67,22 +85,27 @@ export default function FeedbackForm() {
     }
 
     const handleDelete = () => {
+        if (!editId || !user) return
 
+        remove(editId)
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
 
-        const newFeedback = {
+        if (!user) return
+
+        const newFeedback: FeedbackDraft = {
             title,
             description,
             category,
             status: editId ? status : 'Suggestion',
             upvotes: editId && selectedFeedback ? selectedFeedback.upvotes : 0,
-            comments: editId && selectedFeedback ? selectedFeedback.comments : []
+            comments: editId && selectedFeedback ? selectedFeedback.comments : [],
+            authorId: user.id
         }
 
-        mutate({
+        save({
             feedback: newFeedback,
             id: editId
         })
@@ -101,7 +124,7 @@ export default function FeedbackForm() {
 
                     <Button
                         back
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/')}
                     >
                         Go Back
                     </Button>
@@ -236,8 +259,19 @@ export default function FeedbackForm() {
 
                         <Button
                             color='purple'
+                            disabled={!user}
                         >
-                            {editId ? 'Save Changes' : 'Add Feedback'}
+                            {
+                                saving 
+                                ? 
+                                'Saving...'
+                                :
+                                editId
+                                ?
+                                'Save Changes'
+                                :
+                                'Add Feedback'
+                            }
                         </Button>
 
                         <Button
@@ -254,6 +288,7 @@ export default function FeedbackForm() {
                                     color='red'
                                     type='button'
                                     onClick={() => toggleModal('delete')}
+                                    disabled={!user}
                                 >
                                     Delete
                                 </Button>
@@ -325,7 +360,7 @@ export default function FeedbackForm() {
                                 color='red'
                                 onClick={handleDelete}
                             >
-                                Delete
+                                {removing ? 'Deleting' : 'Delete'}
                             </Button>
 
                         </div>

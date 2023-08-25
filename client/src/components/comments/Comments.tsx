@@ -92,25 +92,35 @@ export default function Comments({
                     Add Comment
                 </h3>
 
-                <TextArea
-                    userComment={userComment}
-                    setUserComment={setUserComment}
-                    placeholder
-                />
+                {
+                    user ? (
+                        <>
+                            <TextArea
+                                userComment={userComment}
+                                setUserComment={setUserComment}
+                                placeholder
+                            />
 
-                <div>
+                            <div>
 
-                    <p>
-                        {250 - userComment.length} Characters left
-                    </p>
+                                <p>
+                                    {250 - userComment.length} Characters left
+                                </p>
 
-                    <Button
-                        color='purple'
-                    >
-                        Post Comment
-                    </Button>
+                                <Button
+                                    color='purple'
+                                >
+                                    Post Comment
+                                </Button>
 
-                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <h4>
+                            You must be logged in to comment
+                        </h4>
+                    )
+                }
 
             </form>
 
