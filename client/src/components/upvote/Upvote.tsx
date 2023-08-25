@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState, useContext } from 'react'
 import styles from './upvote.module.css'
 import { useMutation } from '@tanstack/react-query'
 import { upvoteFeedback } from '../../lib/upvoteFeedback'
+import { UserContext } from '../../contexts/UserContext'
 
 export default function Upvote({
     id,
@@ -14,7 +15,9 @@ export default function Upvote({
     setUpvotes: Dispatch<SetStateAction<number>>
     grid?: boolean
 }) {
-    const [isUpvoted, setIsUpvoted] = useState(false)
+    const { user } = useContext(UserContext)
+
+    const [isUpvoted, setIsUpvoted] = useState(user?.likedFeedback.includes(id) || false)
 
     const { mutate } = useMutation({
         mutationFn: () => upvoteFeedback(id, upvotes)

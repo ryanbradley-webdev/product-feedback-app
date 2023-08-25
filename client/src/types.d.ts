@@ -4,6 +4,7 @@ type User = {
     name: string
     handle: string
     profileImg?: string
+    likedFeedback: string[]
 }
 
 type BasicComment = {
@@ -33,5 +34,6 @@ type Feedback = FeedbackDraft & {
 }
 
 type UserContext = {
-    user: User | null
+    user: User | null,
+    toggleFeedbackLike: (feedbackId: string) => void
 }
