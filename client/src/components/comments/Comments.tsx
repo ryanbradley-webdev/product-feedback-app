@@ -24,9 +24,7 @@ export default function Comments({
         }
 
         const newComment: FeedbackComment = {
-            id: crypto.randomUUID(),
             user: {
-                id: '5432',
                 name: 'Elijah Moss',
                 handle: '@hexagon.bestagon',
                 profileImg: ''

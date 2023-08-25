@@ -4,7 +4,6 @@ import TextArea from '../textArea/TextArea'
 import Button from '../button/Button'
 
 export default function CommentContent({
-    id,
     feedbackId,
     name,
     handle,
@@ -12,7 +11,6 @@ export default function CommentContent({
     profileImg,
     replyTo
 }: {
-    id: string
     feedbackId: string
     name: string
     handle: string
@@ -35,10 +33,8 @@ export default function CommentContent({
         }
 
         const newReply: FeedbackCommentReply = {
-            id: crypto.randomUUID(),
             comment: userComment,
             user: {
-                id: '5432',
                 name: 'Elijah Moss',
                 handle: '@hexagon.bestagon',
                 profileImg: ''
@@ -47,7 +43,7 @@ export default function CommentContent({
         }
 
         // FIXME add API call
-        console.log(newReply, id, feedbackId)
+        console.log(newReply, feedbackId)
 
         setUserComment('')
         setReplyOpen(false)
