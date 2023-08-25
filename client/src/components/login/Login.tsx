@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react'
+import { Dispatch, SetStateAction, useContext, useRef } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import Button from '../button/Button'
 import styles from './login.module.css'
@@ -6,18 +6,22 @@ import Modal from '../modal/Modal'
 
 export default function Login({
     visible,
-    closeModal
+    closeModal,
+    variant,
+    setVariant
 }: {
     visible: boolean
     closeModal: () => void
+    variant: 'login' | 'create'
+    setVariant: Dispatch<SetStateAction<'login' | 'create'>>
 }) {
     const {
-        user,
         login
     } = useContext(UserContext)
 
     const emailRef = useRef<HTMLInputElement>(null)
     const passwordRef = useRef<HTMLInputElement>(null)
+    const passwordConfirmRef = useRef<HTMLInputElement>(null)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
@@ -38,7 +42,8 @@ export default function Login({
         >
 
             <h5>
-                Enter your information to log in
+                {variant === 'login' && 'Enter your information to log in'}
+                {variant === 'create' && 'Enter your email and choose a password'}
             </h5>
 
             <form
@@ -57,6 +62,7 @@ export default function Login({
 
                     <input
                         type="email"
+                        placeholder='e.g. johndoe@email.com'
                         ref={emailRef}
                     />
 
@@ -77,7 +83,35 @@ export default function Login({
 
                 </label>
 
-                <div>
+                {
+                    variant === 'create' && (
+                        <label
+                            htmlFor="password-confirm"
+                        >
+
+                            <span>
+                                Confirm Password
+                            </span>
+
+                            <input
+                                type="password"
+                                ref={passwordConfirmRef}
+                            />
+
+                        </label>
+                    )
+                }
+
+                <div
+                    className={styles.btn_div}
+                >
+
+                    <Button
+                        color='blue'
+                    >
+                        {variant === 'login' && 'Log in'}
+                        {variant === 'create' && 'Create Account'}
+                    </Button>
 
                     <Button
                         color='red'
@@ -87,11 +121,37 @@ export default function Login({
                         Cancel
                     </Button>
 
-                    <Button
-                        color='blue'
-                    >
-                        Log In
-                    </Button>
+                </div>
+
+                <div
+                    className={styles.switch_div}
+                >
+
+                    {variant === 'login' && (
+                        <p
+                            className={styles.switch}
+                        >
+                            Need an account?
+                            <Button
+                                onClick={() => setVariant('create')}
+                            >
+                                Create an account
+                            </Button>
+                        </p>
+                    )}
+
+                    {variant === 'create' && (
+                        <p
+                            className={styles.switch}
+                        >
+                            Already have an account?
+                            <Button
+                                onClick={() => setVariant('login')}
+                            >
+                                Log in
+                            </Button>
+                        </p>
+                    )}
 
                 </div>
 

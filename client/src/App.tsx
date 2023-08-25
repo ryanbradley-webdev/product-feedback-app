@@ -10,6 +10,7 @@ import './App.css'
 
 function App() {
   const [loginVisible, setLoginVisible] = useState(false)
+  const [loginVariant, setLoginVariant] = useState<'login' | 'create'>('login')
 
   const toggleLoginModal = () => {
     setLoginVisible(!loginVisible)
@@ -33,11 +34,14 @@ function App() {
 
       <Footer
         toggleModal={toggleLoginModal}
+        setVariant={setLoginVariant}
       />
 
       <Login
         visible={loginVisible}
         closeModal={toggleLoginModal}
+        variant={loginVariant}
+        setVariant={setLoginVariant}
       />
     </>
   )
