@@ -3,10 +3,9 @@ import styles from './feedbackList.module.css'
 import NoFeedback from '../../assets/NoFeedback'
 import Button from '../button/Button'
 import { Link } from 'react-router-dom'
-
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../feedbackCard/FeedbackCard'
 import { getCommentLength } from '../../util/getCommentLength'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function FeedbackList({
     filters,
@@ -16,7 +15,7 @@ export default function FeedbackList({
     sortTerm: string
 }) {
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

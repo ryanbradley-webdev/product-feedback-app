@@ -1,16 +1,16 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styles from './feedback.module.css'
 import { useQuery } from '@tanstack/react-query'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../../components/feedbackCard/FeedbackCard'
 import Button from '../../components/button/Button'
 import Comments from '../../components/comments/Comments'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function Feedback() {
     const { id } = useParams()
 
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

@@ -4,10 +4,10 @@ import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
 import React, { useRef, useState } from 'react'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import { useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
 import TextArea from '../../components/textArea/TextArea'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function FeedbackForm() {
     const [searchParams] = useSearchParams()
@@ -15,7 +15,7 @@ export default function FeedbackForm() {
     const editId = searchParams.get('id')
 
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

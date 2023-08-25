@@ -5,7 +5,7 @@ import styles from './header.module.css'
 import Chip from '../chip/Chip'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function Header({
     filters,
@@ -17,7 +17,7 @@ export default function Header({
     const [menuVisible, setMenuVisible] = useState(false)
 
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

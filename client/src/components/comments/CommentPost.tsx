@@ -29,7 +29,7 @@ export default function CommentPost({
                         {replies.map(reply => (
                             <CommentContent
                                 feedbackId={feedbackId}
-                                key={reply.id}
+                                key={crypto.randomUUID()}
                                 {...reply.user}
                                 {...reply}
                             />

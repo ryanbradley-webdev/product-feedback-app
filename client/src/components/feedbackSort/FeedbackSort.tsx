@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import DownCaret from '../../assets/DownCaret'
 import Dropdown from '../dropdown/Dropdown'
 import { useQuery } from '@tanstack/react-query'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function FeedbackList({
     sortTerm,
@@ -18,7 +18,7 @@ export default function FeedbackList({
     const [optionsVisible, setOptionsVisible] = useState(false)
 
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

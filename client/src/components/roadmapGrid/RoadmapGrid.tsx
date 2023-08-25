@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../feedbackCard/FeedbackCard'
 import styles from './roadmapGrid.module.css'
 import { useQuery } from '@tanstack/react-query'
+import { getAllFeedback } from '../../lib/getAllFeedback'
 
 export default function RoadmapGrid() {
     const [selectedStatus, setSelectedStatus] = useState('Planned')
 
     const { data: items } = useQuery({
-        queryFn: () => SAMPLE_FEEDBACK,
+        queryFn: getAllFeedback,
         queryKey: ['feedback']
     })
 

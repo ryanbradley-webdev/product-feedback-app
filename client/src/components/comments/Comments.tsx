@@ -54,7 +54,7 @@ export default function Comments({
                 {
                     comments.map(comment => (
                         <CommentPost
-                            key={comment.id}
+                            key={crypto.randomUUID()}
                             feedbackId={id}
                             {...comment}
                         />
