@@ -6,23 +6,43 @@ import { Link } from 'react-router-dom'
 
 import { SAMPLE_FEEDBACK } from '../../sampleData/feedback'
 import FeedbackCard from '../feedbackCard/FeedbackCard'
+import { getCommentLength } from '../../util/getCommentLength'
 
 export default function FeedbackList({
-    filters
+    filters,
+    sortTerm
 }: {
     filters: string[]
+    sortTerm: string
 }) {
     const { data: items } = useQuery({
         queryFn: () => SAMPLE_FEEDBACK,
         queryKey: ['feedback']
     })
 
+    const sortedItems = items?.sort((a, b) => {
+        switch (sortTerm) {
+            case 'Least Upvotes':
+                return a.upvotes - b.upvotes
+
+            case 'Most Comments':
+                return getCommentLength(b.comments) - getCommentLength(a.comments)
+
+            case 'Least Comments':
+                return getCommentLength(a.comments) - getCommentLength(b.comments)
+
+            case 'Most Upvotes':
+            default: 
+                return b.upvotes - a.upvotes               
+        }
+    })
+
     const filteredItems = 
         filters.length > 0
         ? 
-        items?.filter(item => filters.includes(item.category) && item.status === 'Suggestion')
+        sortedItems?.filter(item => filters.includes(item.category) && item.status === 'Suggestion')
         : 
-        items?.filter(item => item.status === 'Suggestion')
+        sortedItems?.filter(item => item.status === 'Suggestion')
 
     return (
         <section
