@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useContext, useState } from 'react'
 import { capitalize } from '../../util/capitalize'
 import styles from './feedbackSort.module.css'
 import Button from '../button/Button'
@@ -7,6 +7,7 @@ import DownCaret from '../../assets/DownCaret'
 import Dropdown from '../dropdown/Dropdown'
 import { useQuery } from '@tanstack/react-query'
 import { getAllFeedback } from '../../lib/getAllFeedback'
+import { UserContext } from '../../contexts/UserContext'
 
 export default function FeedbackList({
     sortTerm,
@@ -15,6 +16,10 @@ export default function FeedbackList({
     sortTerm: string
     setSortTerm: Dispatch<SetStateAction<string>>
 }) {
+    const {
+        user
+    } = useContext(UserContext)
+
     const [optionsVisible, setOptionsVisible] = useState(false)
 
     const { data: items } = useQuery({
@@ -57,6 +62,7 @@ export default function FeedbackList({
                 <span>
                     Sort by :&nbsp;
                 </span>
+                
                 {capitalize(sortTerm.replace('-', ' '))}
 
                 <DownCaret />
@@ -77,9 +83,12 @@ export default function FeedbackList({
 
             <Link
                 to='/new'
+                aria-disabled={!user}
             >
                 <Button
                     color='purple'
+                    disabled={!user}
+                    title={user ? '' : 'You must be logged in to add feedback'}
                 >
                     &#43; Add Feedback
                 </Button>
