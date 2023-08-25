@@ -80,3 +80,9 @@
 .form > button:last-child:is(:hover, :focus) {
     opacity: 1;
 }
+
+.form > .error_msg {
+    width: 100%;
+    font-size: 13px;
+    color: var(--clr-red-900);
+}

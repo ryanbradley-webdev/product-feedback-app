@@ -14,6 +14,8 @@ export default function UserContextProvider({
     children: ReactNode
 }) {
     const [user, setUser] = useState<User | null>(null)
+    const [loginError, setLoginError] = useState('')
+    const [signupError, setSignupError] = useState('')
 
     const queryClient = useQueryClient()
 
@@ -55,6 +57,8 @@ export default function UserContextProvider({
     const login = (email: string, password: string) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(async userCredential => {
+                setLoginError('')
+
                 const userId = userCredential.user.uid
 
                 const userData = await getLoginInfo(userId)
@@ -63,7 +67,10 @@ export default function UserContextProvider({
                     setUser(userData)
                 }
             })
-            .catch(() => setUser(null))
+            .catch(e => {
+                setLoginError(e.message)
+                setUser(null)
+            })
     }
 
     const logout = () => {
@@ -73,20 +80,33 @@ export default function UserContextProvider({
             })
     }
 
-    const signup = (email: string, password: string, name: string, handle: string, profileImg: string) => {
+    const signup = (email: string, password: string, passwordConfirm: string, name: string, handle: string, profileImg: string) => {
+        if (password !== passwordConfirm) {
+            return setSignupError('password-mismatch')
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
+                setSignupError('')
+
                 createUserProfile(userCredential.user.uid, name, handle, profileImg)
                     .then(user => setUser(user))
                     .catch(() => setUser(null))
             })
-            .catch(() => setUser(null))
+            .catch(e => {
+                console.log(e.message)
+
+                setSignupError(e.message)
+                setUser(null)
+            })
     }
 
     const value = {
         user,
         signup,
+        signupError,
         login,
+        loginError,
         logout,
         toggleFeedbackLike
     }

@@ -37,8 +37,10 @@ type Feedback = FeedbackDraft & {
 
 type UserContext = {
     user: User | null,
-    signup: (email: string, password: string, name: string, handle: string, profileImg: string) => void
+    signup: (email: string, password: string, passwordConfirm: string, name: string, handle: string, profileImg: string) => void
+    signupError: string
     login: (email: string, password: string) => void
+    loginError: string
     logout: () => void
     toggleFeedbackLike: (feedbackId: string, upvotes: number) => void
 }

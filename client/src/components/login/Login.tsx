@@ -17,7 +17,9 @@ export default function Login({
 }) {
     const {
         login,
-        signup
+        loginError,
+        signup,
+        signupError
     } = useContext(UserContext)
 
     const nameRef = useRef<HTMLInputElement>(null)
@@ -58,9 +60,33 @@ export default function Login({
         const handle = handleRef.current.value
         const profileImg = ''
 
-        if (!email || !password || password !== passwordConfirm) return
+        if (!email || !password) return
 
-        signup(email, password, name, handle, profileImg)
+        signup(email, password, passwordConfirm, name, handle, profileImg)
+    }
+
+    const generateErrorMsg = () => {
+        if (loginError) {
+            if (loginError.includes('wrong-password')) {
+                return 'Wrong password'
+            }
+
+            if (loginError.includes('user-not-found')) {
+                return 'The supplied email does not have an associated account'
+            }
+        }
+
+        if (signupError) {
+            if (signupError.includes('email-already-in-use')) {
+                return 'The supplied email alreay has an account'
+            }
+
+            if (signupError.includes('password-mismatch')) {
+                return 'Passwords do not match'
+            }
+        }
+
+        return 'Something went wrong'
     }
     
     return (
@@ -96,6 +122,7 @@ export default function Login({
                                     placeholder='e.g. John Doe'
                                     required
                                     ref={nameRef}
+                                    aria-invalid={signupError !== ''}
                                 />
 
                             </label>
@@ -113,6 +140,7 @@ export default function Login({
                                     placeholder='e.g. @johndoe'
                                     required
                                     ref={handleRef}
+                                    aria-invalid={signupError !== ''}
                                 />
 
                             </label>
@@ -134,6 +162,7 @@ export default function Login({
                         placeholder='e.g. johndoe@email.com'
                         required
                         ref={emailRef}
+                        aria-invalid={loginError !== '' || signupError !== ''}
                     />
 
                 </label>
@@ -150,6 +179,7 @@ export default function Login({
                         type="password"
                         required
                         ref={passwordRef}
+                        aria-invalid={loginError !== '' || signupError !== ''}
                     />
 
                 </label>
@@ -168,9 +198,22 @@ export default function Login({
                                 type="password"
                                 required
                                 ref={passwordConfirmRef}
+                                aria-invalid={signupError !== ''}
                             />
 
                         </label>
+                    )
+                }
+
+                {
+                    (loginError || signupError) && (
+                        <p
+                            className={styles.error_msg}
+                        >
+
+                            {generateErrorMsg()}
+
+                        </p>
                     )
                 }
 
