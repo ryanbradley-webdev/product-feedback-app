@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import styles from './comments.module.css'
 import Button from '../button/Button'
 import CommentPost from './CommentPost'
 import { getCommentLength } from '../../util/getCommentLength'
 import TextArea from '../textArea/TextArea'
+import { UserContext } from '../../contexts/UserContext'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { addComment } from '../../lib/addComment'
 
 export default function Comments({
     id,
@@ -12,28 +15,33 @@ export default function Comments({
     id: string
     comments: FeedbackComment[]
 }) {
+    const { user } = useContext(UserContext)
+
     const [userComment, setUserComment] = useState('')
 
     const commentCount = getCommentLength(comments)
 
+    const queryClient = useQueryClient()
+
+    const { mutate } = useMutation({
+        mutationFn: (newComment: FeedbackComment) => addComment(newComment, id),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['feedback'] })
+    })
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
 
-        if (!userComment) {
+        if (!userComment || !user) {
             return
         }
 
         const newComment: FeedbackComment = {
-            user: {
-                name: 'Elijah Moss',
-                handle: '@hexagon.bestagon',
-                profileImg: ''
-            },
+            user,
             comment: userComment,
             replies: []
         }
 
-        console.log(newComment) // FIXME add API call
+        mutate(newComment)
 
         setUserComment('')
     }

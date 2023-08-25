@@ -31,3 +31,7 @@ type FeedbackDraft = {
 type Feedback = FeedbackDraft & {
     id: string
 }
+
+type UserContext = {
+    user: User | null
+}
