@@ -1,12 +1,20 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Suggestions from './routes/suggestions/Suggestions'
 import Roadmap from './routes/roadmap/Roadmap'
 import FeedbackForm from './routes/feedbackForm/FeedbackForm'
 import Feedback from './routes/feedback/Feedback'
-import './App.css'
 import Footer from './components/footer/Footer'
+import Login from './components/login/Login'
+import './App.css'
 
 function App() {
+  const [loginVisible, setLoginVisible] = useState(false)
+
+  const toggleLoginModal = () => {
+    setLoginVisible(!loginVisible)
+  }
+
   return (
     <>
       <Routes>
@@ -23,7 +31,14 @@ function App() {
 
       </Routes>
 
-      <Footer />
+      <Footer
+        toggleModal={toggleLoginModal}
+      />
+
+      <Login
+        visible={loginVisible}
+        closeModal={toggleLoginModal}
+      />
     </>
   )
 }

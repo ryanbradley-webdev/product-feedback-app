@@ -3,12 +3,13 @@ import Button from '../../components/button/Button'
 import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
 import TextArea from '../../components/textArea/TextArea'
 import { getAllFeedback } from '../../lib/getAllFeedback'
 import { saveFeedback } from '../../lib/saveFeedback'
+import Modal from '../../components/modal/Modal'
 
 export default function FeedbackForm() {
     const [searchParams] = useSearchParams()
@@ -40,18 +41,18 @@ export default function FeedbackForm() {
     const [titleInvalid, setTitleInvalid] = useState(false)
     const [descriptionInvalid, setDescriptionInvalid] = useState(false)
 
-    const deleteRef = useRef<HTMLDivElement>(null)
-    const cancelRef = useRef<HTMLDivElement>(null)
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+    const [cancelModalVisible, setCancelModalVisible] = useState(false)
 
     const navigate = useNavigate()
 
-    const toggleModal = (ref: React.RefObject<HTMLDivElement>) => {
-        if (ref.current) {
-            if (ref.current.style.display) {
-                ref.current.style.display = ''
-            } else {
-                ref.current.style.display = 'none'
-            }
+    const toggleModal = (modal: 'delete' | 'cancel') => {
+        if (modal === 'delete') {
+            setDeleteModalVisible(!deleteModalVisible)
+        }
+
+        if (modal === 'cancel') {
+            setCancelModalVisible(!cancelModalVisible)
         }
     }
 
@@ -242,7 +243,7 @@ export default function FeedbackForm() {
                         <Button
                             color='grey-blue'
                             type='button'
-                            onClick={() => toggleModal(cancelRef)}
+                            onClick={() => toggleModal('cancel')}
                         >
                             Cancel
                         </Button>
@@ -252,7 +253,7 @@ export default function FeedbackForm() {
                                 <Button
                                     color='red'
                                     type='button'
-                                    onClick={() => toggleModal(deleteRef)}
+                                    onClick={() => toggleModal('delete')}
                                 >
                                     Delete
                                 </Button>
@@ -265,91 +266,71 @@ export default function FeedbackForm() {
                 
             </main>
 
-            <div
-                ref={cancelRef}
-                className={styles.modal_wrapper}
-                style={{
-                    display: 'none'
-                }}
+            <Modal
+                visible={cancelModalVisible}
             >
 
+                <h3>
+                    Discard {editId ? 'changes' : 'feedback'}?
+                </h3>
+
                 <div
-                    className={styles.modal}
+                    className={styles.btn_div}
                 >
 
-                    <h3>
-                        Discard {editId ? 'changes' : 'feedback'}?
-                    </h3>
-
-                    <div
-                        className={styles.btn_div}
+                    <Button
+                        color='grey-blue'
+                        onClick={() => toggleModal('cancel')}
                     >
+                        Cancel
+                    </Button>
 
-                        <Button
-                            color='grey-blue'
-                            onClick={() => toggleModal(cancelRef)}
-                        >
-                            Cancel
-                        </Button>
-
-                        <Button
-                            color='red'
-                            onClick={() => navigate(-1)}
-                        >
-                            Discard
-                        </Button>
-
-                    </div>
+                    <Button
+                        color='red'
+                        onClick={() => navigate(-1)}
+                    >
+                        Discard
+                    </Button>
 
                 </div>
 
-            </div>
+            </Modal>
 
             {
                 editId && (
-                    <div
-                        ref={deleteRef}
-                        className={styles.modal_wrapper}
-                        style={{
-                            display: 'none'
-                        }}
+                    <Modal
+                        visible={deleteModalVisible}
                     >
 
+                        <h3>
+                            Delete feedback?
+                        </h3>
+
+                        <p>
+                            This can not be undone.
+                        </p>
+
                         <div
-                            className={styles.modal}
+                            className={styles.btn_div}
                         >
 
-                            <h3>
-                                Delete feedback?
-                            </h3>
-
-                            <p>
-                                This can not be undone.
-                            </p>
-
-                            <div
-                                className={styles.btn_div}
+                            <Button
+                                color='grey-blue'
+                                onClick={() => toggleModal('delete')}
                             >
+                                Cancel
+                            </Button>
 
-                                <Button
-                                    color='grey-blue'
-                                    onClick={() => toggleModal(deleteRef)}
-                                >
-                                    Cancel
-                                </Button>
-
-                                <Button
-                                    color='red'
-                                    onClick={handleDelete}
-                                >
-                                    Delete
-                                </Button>
-
-                            </div>
+                            <Button
+                                color='red'
+                                onClick={handleDelete}
+                            >
+                                Delete
+                            </Button>
 
                         </div>
 
-                    </div>
+                    </Modal>
                 )
             }
 

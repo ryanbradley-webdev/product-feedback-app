@@ -1,3 +1,16 @@
 .footer {
+    display: grid;
+    justify-items: center;
     padding: 24px;
+}
+
+.footer p {
+    display: flex;
+    align-items: center;
+}
+
+.footer > p > button {
+    font-size: inherit;
+    font-weight: inherit;
+    padding-inline: 0;
 }
