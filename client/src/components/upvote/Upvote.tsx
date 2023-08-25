@@ -41,6 +41,8 @@ export default function Upvote({
     useEffect(() => {
         if (user) {
             setIsUpvoted(user.likedFeedback.includes(id))
+        } else {
+            setIsUpvoted(false)
         }
     }, [user, id])
 
