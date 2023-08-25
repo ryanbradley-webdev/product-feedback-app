@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { toggleUpvote } from '../lib/toggleUpvote'
 
@@ -11,11 +11,22 @@ export default function UserContextProvider({
 }) {
     const [user, setUser] = useState<User | null>(null)
 
+    const queryClient = useQueryClient()
+
     const { mutate } = useMutation({
-        mutationFn: (likedFeedback: string[]) => toggleUpvote(likedFeedback, user?.handle)
+        mutationFn: ({
+            newLikedFeedback,
+            feedbackId,
+            upvotes
+        }: {
+            newLikedFeedback: string[]
+            feedbackId: string
+            upvotes: number
+        }) => toggleUpvote(newLikedFeedback, user?.handle, feedbackId, upvotes),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: ['feedback'] })
     })
 
-    const toggleFeedbackLike = (feedbackId: string) => {
+    const toggleFeedbackLike = (feedbackId: string, upvotes: number) => {
         if (!user) return
 
         const newLikedFeedback =
@@ -25,7 +36,11 @@ export default function UserContextProvider({
             :
             [ ...user.likedFeedback, feedbackId ]
 
-        mutate(newLikedFeedback)
+        mutate({
+            newLikedFeedback,
+            feedbackId,
+            upvotes
+        })
         
         setUser({
             ...user,

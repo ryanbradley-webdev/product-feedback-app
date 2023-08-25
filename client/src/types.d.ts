@@ -35,5 +35,5 @@ type Feedback = FeedbackDraft & {
 
 type UserContext = {
     user: User | null,
-    toggleFeedbackLike: (feedbackId: string) => void
+    toggleFeedbackLike: (feedbackId: string, upvotes: number) => void
 }
