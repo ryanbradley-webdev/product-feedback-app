@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createContext, ReactNode, useState } from 'react'
 import { toggleUpvote } from '../lib/toggleUpvote'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { auth } from '../firebase/firebaseInit'
 import { getLoginInfo } from '../lib/getLoginInfo'
 
@@ -65,9 +65,17 @@ export default function UserContextProvider({
             .catch(() => setUser(null))
     }
 
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                setUser(null)
+            })
+    }
+
     const value = {
         user,
         login,
+        logout,
         toggleFeedbackLike
     }
 

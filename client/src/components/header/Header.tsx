@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useState, useContext } from 'react'
 import Burger from '../../assets/Burger'
 import CloseBtn from '../../assets/CloseBtn'
 import styles from './header.module.css'
@@ -6,14 +6,23 @@ import Chip from '../chip/Chip'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { getAllFeedback } from '../../lib/getAllFeedback'
+import { UserContext } from '../../contexts/UserContext'
+import Button from '../button/Button'
 
 export default function Header({
     filters,
-    setFilters
+    setFilters,
+    toggleModal
 }: {
     filters: string[]
     setFilters: Dispatch<SetStateAction<string[]>>
+    toggleModal: () => void
 }) {
+    const {
+        user,
+        logout
+    } = useContext(UserContext)
+
     const [menuVisible, setMenuVisible] = useState(false)
 
     const { data: items } = useQuery({
@@ -184,6 +193,30 @@ export default function Header({
                         </div>
 
                     </div>
+
+                </div>
+
+                <div
+                    className={styles.user}
+                >
+
+                    <p>
+                        {
+                            user
+                            ?
+                            'Logged in as ' + user.name
+                            :
+                            'You must be signed in to comment and upvote'
+                        }
+                    </p>
+
+                    <Button
+                        onClick={user ? logout : toggleModal}
+                    >
+                        {
+                            user ? 'Sign out' : 'Log in'
+                        }
+                    </Button>
 
                 </div>
 

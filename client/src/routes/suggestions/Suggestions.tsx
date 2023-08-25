@@ -4,7 +4,11 @@ import styles from './suggestions.module.css'
 import FeedbackSort from '../../components/feedbackSort/FeedbackSort'
 import FeedbackList from '../../components/feedbackList/FeedbackList'
 
-export default function Suggestions() {
+export default function Suggestions({
+    toggleModal
+}: {
+    toggleModal: () => void
+}) {
     const [filters, setFilters] = useState<string[]>([])
     const [sortTerm, setSortTerm] = useState<string>('Most Upvotes')
 
@@ -14,6 +18,7 @@ export default function Suggestions() {
             <Header
                 filters={filters}
                 setFilters={setFilters}
+                toggleModal={toggleModal}
             />
 
             <main
