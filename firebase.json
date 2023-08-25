@@ -4,7 +4,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "source": "/client",
+    "source": "/",
     "ignore": [
       "firebase.json",
       "**/.*",
