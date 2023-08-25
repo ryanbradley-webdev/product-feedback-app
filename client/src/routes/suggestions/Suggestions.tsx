@@ -31,10 +31,6 @@ export default function Suggestions() {
                 />
 
             </main>
-
-            <footer>
-                Footer
-            </footer>
         
         </>
     )

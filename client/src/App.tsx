@@ -4,22 +4,27 @@ import Roadmap from './routes/roadmap/Roadmap'
 import FeedbackForm from './routes/feedbackForm/FeedbackForm'
 import Feedback from './routes/feedback/Feedback'
 import './App.css'
+import Footer from './components/footer/Footer'
 
 function App() {
   return (
-    <Routes>
-      
-      <Route path='/' element={<Suggestions />} />
+    <>
+      <Routes>
+        
+        <Route path='/' element={<Suggestions />} />
 
-      <Route path='/roadmap' element={<Roadmap />} />
+        <Route path='/roadmap' element={<Roadmap />} />
 
-      <Route path='/new' element={<FeedbackForm />} />
+        <Route path='/new' element={<FeedbackForm />} />
 
-      <Route path='/edit' element={<FeedbackForm />} />
+        <Route path='/edit' element={<FeedbackForm />} />
 
-      <Route path='/:id' element={<Feedback />} />
+        <Route path='/:id' element={<Feedback />} />
 
-    </Routes>
+      </Routes>
+
+      <Footer />
+    </>
   )
 }
 

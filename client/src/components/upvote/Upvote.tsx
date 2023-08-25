@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState, useContext } from 'react'
+import { Dispatch, SetStateAction, useState, useContext, useEffect } from 'react'
 import styles from './upvote.module.css'
 import { UserContext } from '../../contexts/UserContext'
 
@@ -35,6 +35,12 @@ export default function Upvote({
 
         setIsUpvoted(!isUpvoted)
     }
+
+    useEffect(() => {
+        if (user) {
+            setIsUpvoted(user.likedFeedback.includes(id))
+        }
+    }, [user, id])
 
     return (
         <button

@@ -1,6 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 import { toggleUpvote } from '../lib/toggleUpvote'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase/firebaseInit'
+import { getLoginInfo } from '../lib/getLoginInfo'
 
 export const UserContext = createContext({} as UserContext)
 
@@ -48,19 +51,25 @@ export default function UserContextProvider({
         })
     }
 
-    const value = {
-        user,
-        toggleFeedbackLike
+    const login = (email: string, password: string) => {
+        signInWithEmailAndPassword(auth, email, password)
+            .then(async userCredential => {
+                const userId = userCredential.user.uid
+
+                const userData = await getLoginInfo(userId)
+
+                if (userData) {
+                    setUser(userData)
+                }
+            })
+            .catch(() => setUser(null))
     }
 
-    useEffect(() => {
-        setUser({
-            name: 'Ryan',
-            handle: '@ryan',
-            profileImg: '',
-            likedFeedback: []
-        })
-    }, [])
+    const value = {
+        user,
+        login,
+        toggleFeedbackLike
+    }
 
     return (
         <UserContext.Provider
