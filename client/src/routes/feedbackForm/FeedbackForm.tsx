@@ -4,10 +4,11 @@ import styles from './feedbackForm.module.css'
 import NewIcon from '/icon-new-feedback.svg'
 import EditIcon from '/icon-edit-feedback.svg'
 import React, { useRef, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import Select from '../../components/select/Select'
 import TextArea from '../../components/textArea/TextArea'
 import { getAllFeedback } from '../../lib/getAllFeedback'
+import { saveFeedback } from '../../lib/saveFeedback'
 
 export default function FeedbackForm() {
     const [searchParams] = useSearchParams()
@@ -17,6 +18,16 @@ export default function FeedbackForm() {
     const { data: items } = useQuery({
         queryFn: getAllFeedback,
         queryKey: ['feedback']
+    })
+
+    const { mutate } = useMutation({
+        mutationFn: ({
+            feedback,
+            id
+        }: {
+            feedback: FeedbackDraft,
+            id: string | null
+        }) => saveFeedback(feedback, id)
     })
 
     const selectedFeedback = items?.find(feedback => feedback.id === editId)
@@ -58,8 +69,22 @@ export default function FeedbackForm() {
 
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+
+        const newFeedback = {
+            title,
+            description,
+            category,
+            status: editId ? status : 'Suggestion',
+            upvotes: editId && selectedFeedback ? selectedFeedback.upvotes : 0,
+            comments: editId && selectedFeedback ? selectedFeedback.comments : []
+        }
+
+        mutate({
+            feedback: newFeedback,
+            id: editId
+        })
     }
 
     return (

@@ -19,12 +19,15 @@ type FeedbackCommentReply = BasicComment & {
     replyTo: string
 }
 
-type Feedback = {
-    id: string
+type FeedbackDraft = {
     title: string
     description: string
     upvotes: number
     category: string
     status: string
     comments: FeedbackComment[]
+}
+
+type Feedback = FeedbackDraft & {
+    id: string
 }
